@@ -110,6 +110,11 @@ namespace SharpChess.Model
             InStalemate,
 
             /// <summary>
+            ///   Player has crossed midline.
+            /// </summary>
+            HasCrossedMidline,
+
+            /// <summary>
             ///   Player is in check mate.
             /// </summary>
             InCheckMate
