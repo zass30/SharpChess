@@ -2567,6 +2567,11 @@
             Gets the ordinal of the piece being captured.
             </summary>
         </member>
+        <member name="T:SharpChess.Model.Move.EndStates">
+            <summary>
+            Ways the game can be over
+            </summary>
+        </member>
         <member name="T:SharpChess.Model.Move.MoveNames">
             <summary>
             Move type names.
@@ -4112,6 +4117,11 @@
               Gets or sets a value indicating whether the player's intellegence is human or computer.
             </summary>
         </member>
+        <member name="P:SharpChess.Model.Player.HasCrossedMidline">
+            <summary>
+              Gets a value indicating whether the player has crossed the midline
+            </summary>
+        </member>
         <member name="P:SharpChess.Model.Player.IsInCheck">
             <summary>
               Gets a value indicating whether the player is in check.
@@ -4247,6 +4257,16 @@
         <member name="F:SharpChess.Model.Player.PlayerStatusNames.InCheckMate">
             <summary>
               Player is in check mate.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Player.PlayerStatusNames.HasCrossedMidline">
+            <summary>
+              Player has crossed midline.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Player.PlayerStatusNames.LostToMidline">
+            <summary>
+              Player has lost to midline.
             </summary>
         </member>
         <member name="T:SharpChess.Model.PlayerBlack">
@@ -4713,6 +4733,11 @@
             </exception>
         </member>
         <member name="M:SharpChess.Model.WinBoard.SendCheckMate">
+            <summary>
+            The send check mate.
+            </summary>
+        </member>
+        <member name="M:SharpChess.Model.WinBoard.SendMidline">
             <summary>
             The send check mate.
             </summary>

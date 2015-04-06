@@ -185,11 +185,18 @@ namespace SharpChess.Model.Tests
                 }*/
 
                 [TestMethod]
-                public void Zugzwang_002()
+                public void CrossMidline_001()
                 {
-                    this.BestMoveTest("1q1k4/2Rr4/8/2Q3K1/8/8/8/8 w - - 0 1", "g5", "h6", 5);
+                    this.BestMoveTest("1q1k4/2Rr4/8/2Q5/5K2/8/8/8 w - - 0 1", "f4", "g5", 5);
                     // Nodes: 37,500
                 }
+
+                public void MidlineBlock()
+                {
+                    // test
+                    this.BestMoveTest("/8/2k5/8/3K4/8/8/8 b", "c6", "d6", 3);
+                }
+
         /*
                 [TestMethod]
                 public void Zugzwang_003()

@@ -403,6 +403,13 @@ namespace SharpChess.Model.AI
                 throw new ForceImmediateMoveException();
             }
 
+            // This node has someone crossed the midline, so no need to search further
+            if (parentMove != null && (player.HasCrossedMidline || player.OpposingPlayer.HasCrossedMidline))
+            {
+                Comment(parentMove, "-MIDLINE-");
+                return player.Score;
+            }
+
             // This node has reached 3-move-repetition, so return the current score, and don't bother searching any deeper.
             if (parentMove != null && parentMove.IsThreeMoveRepetition)
             {

@@ -92,6 +92,19 @@ namespace SharpChess.Model
         #region Enums
 
         /// <summary>
+        /// Ways the game can be over
+        /// </summary>
+        public enum EndStates
+        {
+            Stalemate,
+            CheckMate,
+            Midline,
+            ThreeMoveRepetition,
+            FiftyMoveDraw,
+            PlayerAgreedDraw
+        }
+
+        /// <summary>
         /// Move type names.
         /// </summary>
         public enum MoveNames
@@ -226,6 +239,12 @@ namespace SharpChess.Model
                 {
                     strbMove.Append(":");
                     strbMove.Append(this.Piece.Abbreviation);
+                }
+
+                if (this.Piece.Player.Status == Player.PlayerStatusNames.HasCrossedMidline)
+                {
+                    strbMove.Append((this.Piece.Player.Colour == Player.PlayerColourNames.White) ? "# 1-0" : "# 0-1");
+                    return strbMove.ToString();
                 }
 
                 switch (this.EnemyStatus)

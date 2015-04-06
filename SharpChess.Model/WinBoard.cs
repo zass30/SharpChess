@@ -723,6 +723,17 @@ namespace SharpChess.Model
         }
 
         /// <summary>
+        /// The send check mate.
+        /// </summary>
+        public static void SendMidline()
+        {
+            if (Active)
+            {
+                SendOutputMessage(Game.PlayerBlack.HasCrossedMidline ? "0-1 {Black crosses midline}" : "1-0 {White crosses midline}");
+            }
+        }
+
+        /// <summary>
         /// The send check stale mate.
         /// </summary>
         public static void SendCheckStaleMate()

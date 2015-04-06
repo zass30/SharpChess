@@ -2374,7 +2374,9 @@ namespace SharpChess
             {
                 this.lblWhiteClock.BorderStyle = BorderStyle.FixedSingle;
                 this.lblBlackClock.BorderStyle = BorderStyle.None;
-                this.lblWhiteClock.BackColor = Game.PlayerWhite.Status == Player.PlayerStatusNames.InCheckMate
+                this.lblWhiteClock.BackColor = (Game.PlayerWhite.Status == Player.PlayerStatusNames.InCheckMate ||
+                                                Game.PlayerBlack.Status == Player.PlayerStatusNames.HasCrossedMidline ||
+                                                Game.PlayerWhite.Status == Player.PlayerStatusNames.InStalemate)
                                                    ? Color.Red
                                                    : (Game.PlayerWhite.IsInCheck ? Color.Orange : Color.LightGray);
                 this.lblBlackClock.BackColor = Color.FromName(KnownColor.Control.ToString());
@@ -2384,7 +2386,9 @@ namespace SharpChess
                 this.lblBlackClock.BorderStyle = BorderStyle.FixedSingle;
                 this.lblWhiteClock.BorderStyle = BorderStyle.None;
                 this.lblWhiteClock.BackColor = Color.FromName(KnownColor.Control.ToString());
-                this.lblBlackClock.BackColor = Game.PlayerBlack.Status == Player.PlayerStatusNames.InCheckMate
+                this.lblBlackClock.BackColor = (Game.PlayerBlack.Status == Player.PlayerStatusNames.InCheckMate ||
+                                                Game.PlayerWhite.Status == Player.PlayerStatusNames.HasCrossedMidline ||
+                                                Game.PlayerBlack.Status == Player.PlayerStatusNames.InStalemate)
                                                    ? Color.Red
                                                    : (Game.PlayerBlack.IsInCheck ? Color.Orange : Color.LightGray);
             }
@@ -2421,6 +2425,14 @@ namespace SharpChess
 
                 case Player.PlayerStatusNames.InCheckMate:
                     this.lblStage.Text += Game.PlayerToPlay.Colour.ToString() + " in checkmate!";
+                    break;
+
+                case Player.PlayerStatusNames.HasCrossedMidline:
+                    this.lblStage.Text += Game.PlayerToPlay.Colour.ToString() + " crossed midline!";
+                    break;
+
+                case Player.PlayerStatusNames.LostToMidline:
+                    this.lblStage.Text += Game.PlayerToPlay.OpposingPlayer.Colour.ToString() + " crossed midline!";
                     break;
 
                 case Player.PlayerStatusNames.InStalemate:

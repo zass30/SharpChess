@@ -110,14 +110,19 @@ namespace SharpChess.Model
             InStalemate,
 
             /// <summary>
+            ///   Player is in check mate.
+            /// </summary>
+            InCheckMate,
+
+            /// <summary>
             ///   Player has crossed midline.
             /// </summary>
             HasCrossedMidline,
 
             /// <summary>
-            ///   Player is in check mate.
+            ///   Player has lost to midline.
             /// </summary>
-            InCheckMate
+            LostToMidline
         }
 
         #endregion
@@ -203,6 +208,14 @@ namespace SharpChess.Model
         {
             get
             {
+                // can't move if the opponent has crossed midline
+                if (this.OpposingPlayer.HasCrossedMidline)
+                    return false;
+
+                if (this.HasCrossedMidline)
+                    return false;
+
+
                 foreach (Piece piece in this.Pieces)
                 {
                     Moves moves = new Moves();
@@ -258,6 +271,22 @@ namespace SharpChess.Model
         ///   Gets or sets a value indicating whether the player's intellegence is human or computer.
         /// </summary>
         public PlayerIntellegenceNames Intellegence { get; set; }
+
+        /// <summary>
+        ///   Gets a value indicating whether the player has crossed the midline
+        /// </summary>
+        public bool HasCrossedMidline
+        {
+            get
+            {
+                if ((this.King.Square.Rank > 3 && this.Colour == PlayerColourNames.White) ||
+                    (this.King.Square.Rank < 4 && this.Colour == PlayerColourNames.Black))
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
 
         /// <summary>
         ///   Gets a value indicating whether the player is in check.
@@ -424,7 +453,7 @@ namespace SharpChess.Model
                 // TODO 3MR not working, investigate.i.e. computer doesn't avoid move.
                 if (Game.MoveHistory.Count > 0 && Game.MoveHistory.Last.IsThreeMoveRepetition)
                 {
-                    intPoints += this.Intellegence == PlayerIntellegenceNames.Human ? 1000000000 : 0;
+                    intPoints += this.Intellegence == PlayerIntellegenceNames.Human ? 8000 : 0;
                 }
 
                 if (this.HasCastled)
@@ -434,8 +463,25 @@ namespace SharpChess.Model
                 else
                 {
                     if (this.King.HasMoved)
-                    {
-                        intPoints -= 247;
+                    {   // points for midline rush
+                        if (this.Colour == PlayerColourNames.White)
+                        {
+                            if (this.King.Square.Rank == 0)
+                                intPoints -= 247;
+                            else if (this.King.Square.Rank == 2)
+                                intPoints += 100;
+                            else if (this.King.Square.Rank == 3)
+                                intPoints += 200;
+                        }
+                        else if (this.Colour == PlayerColourNames.Black)
+                        {
+                            if (this.King.Square.Rank == 7)
+                                intPoints -= 247;
+                            else if (this.King.Square.Rank == 5)
+                                intPoints += 100;
+                            else if (this.King.Square.Rank == 4)
+                                intPoints += 200;
+                        }
                     }
                     else
                     {
@@ -462,6 +508,12 @@ namespace SharpChess.Model
                     {
                         intPoints -= 999999999;
                     }
+                }
+
+
+                if (this.HasCrossedMidline)
+                {
+                    intPoints = 999999999;
                 }
 
                 return intPoints;
@@ -518,14 +570,22 @@ namespace SharpChess.Model
         {
             get
             {
+                if (this.HasCrossedMidline)
+                {
+                    return PlayerStatusNames.HasCrossedMidline;
+                }
+
                 if (this.IsInCheckMate)
                 {
                     return PlayerStatusNames.InCheckMate;
                 }
 
-                if (!this.CanMove)
+                if (!this.CanMove || this.CanClaimThreeMoveRepetitionDraw)
                 {
-                    return PlayerStatusNames.InStalemate;
+                    if (this.OpposingPlayer.HasCrossedMidline)
+                        return PlayerStatusNames.LostToMidline;
+                    else
+                        return PlayerStatusNames.InStalemate;
                 }
 
                 if (this.IsInCheck)
@@ -533,10 +593,10 @@ namespace SharpChess.Model
                     return PlayerStatusNames.InCheck;
                 }
 
+
                 return PlayerStatusNames.Normal;
             }
         }
-
         /// <summary>
         ///   Gets the sum of the player's piece value.
         /// </summary>
