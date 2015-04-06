@@ -72,6 +72,7 @@
     <Compile Include="PGNtoXML.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceBishop.cs" />
+    <Compile Include="PieceChancellor.cs" />
     <Compile Include="PieceHashCodes.cs" />
     <Compile Include="PieceKing.cs" />
     <Compile Include="PieceKnight.cs" />
