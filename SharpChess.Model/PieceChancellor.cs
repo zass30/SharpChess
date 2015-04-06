@@ -28,30 +28,28 @@ namespace SharpChess.Model
     /// <summary>
     /// The piece queen.
     /// </summary>
-    public class PieceQueen : IPieceTop
+    public class PieceChancellor : IPieceTop
     {
         #region Constants and Fields
 
         /// <summary>
         /// Directional vectors of where the piece can go
         /// </summary>
-//        private static int[] moveVectors = { 17, -17, 15, -15, 1, -1, 16, -16 };
-//        public static int[] moveVectors = { 1, -1, 16, -16 };
-                public static int[] moveVectors_slider = { 1, -1, 16, -16 };
-                public static int[] moveVectors_leaper = { 33, 18, -14, -31, -33, -18, 14, 31 };
+
+        public static int[] moveVectors_slider = { 1, -1, 16, -16 };
+        public static int[] moveVectors_leaper = { 33, 18, -14, -31, -33, -18, 14, 31 };
 
         #endregion
-
         
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PieceQueen"/> class.
+        /// Initializes a new instance of the <see cref="PieceChancellor"/> class.
         /// </summary>
         /// <param name="pieceBase">
         /// The piece base.
         /// </param>
-        public PieceQueen(Piece pieceBase)
+        public PieceChancellor(Piece pieceBase)
         {
             this.Base = pieceBase;
         }
