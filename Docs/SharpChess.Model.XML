@@ -3726,7 +3726,7 @@
             The piece queen.
             </summary>
         </member>
-        <member name="F:SharpChess.Model.PieceQueen.moveVectors">
+        <member name="F:SharpChess.Model.PieceQueen.moveVectors_slider">
             <summary>
             Directional vectors of where the piece can go
             </summary>
