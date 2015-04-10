@@ -98,12 +98,20 @@ namespace SharpChess.Model
                     break;
 
                 case PieceNames.Queen:
-                    this.Top = new PieceQueen(this);
+                    if (player.Army == Armies.ArmyNames.Classic)
+                        this.Top = new PieceQueen(this);
+                    else if (player.Army == Armies.ArmyNames.Chancellor)
+                        this.Top = new PieceChancellor(this);
+                    else
+                        throw new Exception("Unknown army: " + player.Army);
                     break;
 
                 case PieceNames.King:
                     this.Top = new PieceKing(this);
                     break;
+
+                default:
+                    throw new Exception("Unknown piece name: " + name);
             }
         }
 
@@ -282,6 +290,7 @@ namespace SharpChess.Model
         /// </summary>
         public enum PieceNames
         {
+            /// Classic Army
             /// <summary>
             ///   The pawn.
             /// </summary>
@@ -310,7 +319,10 @@ namespace SharpChess.Model
             /// <summary>
             ///   The king.
             /// </summary>
-            King
+            King,
+
+            /// Chancellor Army
+            Chancellor
         }
 
         #endregion
@@ -549,8 +561,9 @@ namespace SharpChess.Model
                     return PieceQueen.DoesPieceAttackSquare(square, player);
                 case PieceNames.Rook:
                     return PieceRook.DoesPieceAttackSquare(square, player);
+                default:
+                    throw new Exception("Unknown piece type: " + PieceName);
             }
-            return false;
         }
 
         public static bool CanPlayerPieceNameAttackSquare(Square square, Player player, Piece.PieceNames PieceName, out Piece attackingPiece)
@@ -570,8 +583,9 @@ namespace SharpChess.Model
                     return PieceQueen.DoesPieceAttackSquare(square, player, out attackingPiece);
                 case PieceNames.Rook:
                     return PieceRook.DoesPieceAttackSquare(square, player, out attackingPiece);
+                default:
+                    throw new Exception("Unknown piece type: " + PieceName);
             }
-            return false;
         }
 
         static public bool DoesLeaperPieceTypeAttackSquare(Square square, Player player, PieceNames pieceName, int[] vector)

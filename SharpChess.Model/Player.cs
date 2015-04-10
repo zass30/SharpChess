@@ -263,6 +263,12 @@ namespace SharpChess.Model
         public PlayerColourNames Colour { get; protected set; }
 
         /// <summary>
+        ///   Gets or sets the player's army.
+        /// </summary>
+        public Armies.ArmyNames Army { get; set; }
+
+
+        /// <summary>
         ///   Gets or sets a value indicating whether the player has castled yet.
         /// </summary>
         public bool HasCastled { get; set; }

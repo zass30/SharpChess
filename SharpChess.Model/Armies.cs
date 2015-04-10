@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SharpChess.Model
 {
-    class Armies
+    public static class Armies
     {
 
         #region Enums
-        public enum Armies
+        public enum ArmyNames
         {
             Classic,
             Chancellor

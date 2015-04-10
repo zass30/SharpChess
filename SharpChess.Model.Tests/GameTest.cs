@@ -72,18 +72,6 @@ namespace SharpChess.Model.Tests
         public void MoveOrdering_MidGame()
         {
             int positions = this.NodeCountTest("r2qk2r/ppp2ppp/2b5/4N3/1b1Pp3/8/PPP1QPPP/R1B2RK1 b k - 1 11", 5);
-
-            // Assert.IsTrue(positions == 52931); Before finding pawn king hash score b-u-g.
-            // Assert.IsTrue(positions == 94138); Before all captures in quiesence.
-            // Assert.IsTrue(positions == 89310); Before reinstating extensions/reductions
-            // Assert.IsTrue(positions == 58090); Dont reduce PV node.
-            // Assert.IsTrue(positions == 58090); Before MVV/LVA if SEE returns zero.
-            // Assert.IsTrue(positions == 54573); Before history * 100
-            // Assert.AreEqual(49641, positions); Less nodes without PVS, but more time WTF!
-            // Assert.AreEqual(53728, positions); Before losing capture ignored in quiescense.
-            // Assert.AreEqual(50205, positions); Clear history and killer moves at the start of each iteration.
-            // Assert.AreEqual(48483, positions); Add LMR, and feature enabling
-            // Assert.IsTrue(positions == 33033 || positions == 33055); Moved reduction into own method.
             Assert.IsTrue(positions == 34901);
         }
 

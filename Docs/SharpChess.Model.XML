@@ -3297,6 +3297,7 @@
             </summary>
         </member>
         <member name="F:SharpChess.Model.Piece.PieceNames.Pawn">
+            Classic Army
             <summary>
               The pawn.
             </summary>
@@ -3325,6 +3326,9 @@
             <summary>
               The king.
             </summary>
+        </member>
+        <member name="F:SharpChess.Model.Piece.PieceNames.Chancellor">
+            Chancellor Army
         </member>
         <member name="T:SharpChess.Model.PieceBishop">
             <summary>
@@ -4182,6 +4186,11 @@
         <member name="P:SharpChess.Model.Player.Colour">
             <summary>
               Gets or sets the player's colour.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.Player.Army">
+            <summary>
+              Gets or sets the player's army.
             </summary>
         </member>
         <member name="P:SharpChess.Model.Player.HasCastled">
