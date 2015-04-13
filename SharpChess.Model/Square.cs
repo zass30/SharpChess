@@ -254,26 +254,6 @@ namespace SharpChess.Model
         ///   Gets or sets Piece.
         /// </summary>
         public Piece Piece { get; set; }
-    /*    private Piece p_piece;
-        public Piece Piece
-        {
-            get
-            {
-               if (this.p_piece == this.p_piece)
-               {
-
-               }
-//                {
-//                    Console.WriteLine("army mismatch");
-  //              }
-                return this.p_piece;
-            }
-            set
-            {
-                this.p_piece = value;
-            }
-        }
-      */  
 
         /// <summary>
         ///   Gets Rank.

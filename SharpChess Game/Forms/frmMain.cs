@@ -646,6 +646,8 @@ namespace SharpChess
         private MenuItem menuItem11;
         private MenuItem menuItem12;
         private MenuItem menuItem13;
+        private MenuItem mnuArmyWhiteChancellor;
+        private MenuItem mnuArmyBlackChancellor;
 
         /// <summary>
         /// The txt output.
@@ -1077,6 +1079,19 @@ namespace SharpChess
             this.mnuMoveNow = new System.Windows.Forms.MenuItem();
             this.mnuHelp = new System.Windows.Forms.MenuItem();
             this.mnuAbout = new System.Windows.Forms.MenuItem();
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.mnuMidline = new System.Windows.Forms.MenuItem();
+            this.menuItem13 = new System.Windows.Forms.MenuItem();
+            this.menuItem6 = new System.Windows.Forms.MenuItem();
+            this.mnuArmyWhiteClassic = new System.Windows.Forms.MenuItem();
+            this.mnuArmyWhiteEmpowered = new System.Windows.Forms.MenuItem();
+            this.mnuArmyWhiteAnimals = new System.Windows.Forms.MenuItem();
+            this.mnuArmyWhiteChancellor = new System.Windows.Forms.MenuItem();
+            this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.menuItem10 = new System.Windows.Forms.MenuItem();
+            this.menuItem11 = new System.Windows.Forms.MenuItem();
+            this.menuItem12 = new System.Windows.Forms.MenuItem();
+            this.mnuArmyBlackChancellor = new System.Windows.Forms.MenuItem();
             this.tbr = new System.Windows.Forms.ToolBar();
             this.tbrNew = new System.Windows.Forms.ToolBarButton();
             this.tbrOpen = new System.Windows.Forms.ToolBarButton();
@@ -1137,17 +1152,6 @@ namespace SharpChess
             this.imgTiles = new System.Windows.Forms.ImageList(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.menuItem3 = new System.Windows.Forms.MenuItem();
-            this.mnuMidline = new System.Windows.Forms.MenuItem();
-            this.menuItem6 = new System.Windows.Forms.MenuItem();
-            this.menuItem5 = new System.Windows.Forms.MenuItem();
-            this.mnuArmyWhiteClassic = new System.Windows.Forms.MenuItem();
-            this.mnuArmyWhiteEmpowered = new System.Windows.Forms.MenuItem();
-            this.mnuArmyWhiteAnimals = new System.Windows.Forms.MenuItem();
-            this.menuItem10 = new System.Windows.Forms.MenuItem();
-            this.menuItem11 = new System.Windows.Forms.MenuItem();
-            this.menuItem12 = new System.Windows.Forms.MenuItem();
-            this.menuItem13 = new System.Windows.Forms.MenuItem();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPerftDepth)).BeginInit();
             this.SuspendLayout();
@@ -1413,6 +1417,91 @@ namespace SharpChess
             this.mnuAbout.Index = 0;
             this.mnuAbout.Text = "&About SharpChess";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
+            // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 6;
+            this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuMidline,
+            this.menuItem13,
+            this.menuItem6,
+            this.menuItem5});
+            this.menuItem3.Text = "&Variants";
+            // 
+            // mnuMidline
+            // 
+            this.mnuMidline.Index = 0;
+            this.mnuMidline.Text = "&Midline";
+            this.mnuMidline.Click += new System.EventHandler(this.mnuMidline_Click);
+            // 
+            // menuItem13
+            // 
+            this.menuItem13.Index = 1;
+            this.menuItem13.Text = "-";
+            // 
+            // menuItem6
+            // 
+            this.menuItem6.Index = 2;
+            this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuArmyWhiteClassic,
+            this.mnuArmyWhiteEmpowered,
+            this.mnuArmyWhiteAnimals,
+            this.mnuArmyWhiteChancellor});
+            this.menuItem6.Text = "White Army";
+            // 
+            // mnuArmyWhiteClassic
+            // 
+            this.mnuArmyWhiteClassic.Index = 0;
+            this.mnuArmyWhiteClassic.Text = "Classic";
+            this.mnuArmyWhiteClassic.Click += new System.EventHandler(this.mnuArmyWhiteClassic_Click);
+            // 
+            // mnuArmyWhiteEmpowered
+            // 
+            this.mnuArmyWhiteEmpowered.Index = 1;
+            this.mnuArmyWhiteEmpowered.Text = "Empowered";
+            this.mnuArmyWhiteEmpowered.Click += new System.EventHandler(this.mnuArmyWhiteEmpowered_Click);
+            // 
+            // mnuArmyWhiteAnimals
+            // 
+            this.mnuArmyWhiteAnimals.Index = 2;
+            this.mnuArmyWhiteAnimals.Text = "Animals";
+            this.mnuArmyWhiteAnimals.Click += new System.EventHandler(this.mnuArmyWhiteAnimals_Click);
+            // 
+            // mnuArmyWhiteChancellor
+            // 
+            this.mnuArmyWhiteChancellor.Index = 3;
+            this.mnuArmyWhiteChancellor.Text = "Chancellor";
+            this.mnuArmyWhiteChancellor.Click += new System.EventHandler(this.mnuArmyWhiteChancellor_Click);
+            // 
+            // menuItem5
+            // 
+            this.menuItem5.Index = 3;
+            this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem10,
+            this.menuItem11,
+            this.menuItem12,
+            this.mnuArmyBlackChancellor});
+            this.menuItem5.Text = "Black Army";
+            // 
+            // menuItem10
+            // 
+            this.menuItem10.Index = 0;
+            this.menuItem10.Text = "Classic";
+            // 
+            // menuItem11
+            // 
+            this.menuItem11.Index = 1;
+            this.menuItem11.Text = "Empowered";
+            // 
+            // menuItem12
+            // 
+            this.menuItem12.Index = 2;
+            this.menuItem12.Text = "Animals";
+            // 
+            // mnuArmyBlackChancellor
+            // 
+            this.mnuArmyBlackChancellor.Index = 3;
+            this.mnuArmyBlackChancellor.Text = "Chancellor";
             // 
             // tbr
             // 
@@ -2043,78 +2132,6 @@ namespace SharpChess
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // menuItem3
-            // 
-            this.menuItem3.Index = 6;
-            this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuMidline,
-            this.menuItem13,
-            this.menuItem6,
-            this.menuItem5});
-            this.menuItem3.Text = "&Variants";
-            // 
-            // mnuMidline
-            // 
-            this.mnuMidline.Index = 0;
-            this.mnuMidline.Text = "&Midline";
-            this.mnuMidline.Click += new System.EventHandler(this.mnuMidline_Click);
-            // 
-            // menuItem6
-            // 
-            this.menuItem6.Index = 2;
-            this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuArmyWhiteClassic,
-            this.mnuArmyWhiteEmpowered,
-            this.mnuArmyWhiteAnimals});
-            this.menuItem6.Text = "White Army";
-            // 
-            // menuItem5
-            // 
-            this.menuItem5.Index = 3;
-            this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem10,
-            this.menuItem11,
-            this.menuItem12});
-            this.menuItem5.Text = "Black Army";
-            // 
-            // mnuArmyWhiteClassic
-            // 
-            this.mnuArmyWhiteClassic.Index = 0;
-            this.mnuArmyWhiteClassic.Text = "Classic";
-            this.mnuArmyWhiteClassic.Click += new System.EventHandler(this.mnuArmyWhiteClassic_Click);
-            // 
-            // mnuArmyWhiteEmpowered
-            // 
-            this.mnuArmyWhiteEmpowered.Index = 1;
-            this.mnuArmyWhiteEmpowered.Text = "Empowered";
-            this.mnuArmyWhiteEmpowered.Click += new System.EventHandler(this.mnuArmyWhiteEmpowered_Click);
-            // 
-            // mnuArmyWhiteAnimals
-            // 
-            this.mnuArmyWhiteAnimals.Index = 2;
-            this.mnuArmyWhiteAnimals.Text = "Animals";
-            this.mnuArmyWhiteAnimals.Click += new System.EventHandler(this.mnuArmyWhiteAnimals_Click);
-            // 
-            // menuItem10
-            // 
-            this.menuItem10.Index = 0;
-            this.menuItem10.Text = "Classic";
-            // 
-            // menuItem11
-            // 
-            this.menuItem11.Index = 1;
-            this.menuItem11.Text = "Empowered";
-            // 
-            // menuItem12
-            // 
-            this.menuItem12.Index = 2;
-            this.menuItem12.Text = "Animals";
-            // 
-            // menuItem13
-            // 
-            this.menuItem13.Index = 1;
-            this.menuItem13.Text = "-";
             // 
             // frmMain
             // 
@@ -3712,6 +3729,8 @@ namespace SharpChess
             this.mnuArmyWhiteClassic.Checked = true;
             this.mnuArmyWhiteAnimals.Checked = false;
             this.mnuArmyWhiteEmpowered.Checked = false;
+            this.mnuArmyWhiteChancellor.Checked = false;
+            Game.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
 
         private void mnuArmyWhiteEmpowered_Click(object sender, EventArgs e)
@@ -3720,6 +3739,7 @@ namespace SharpChess
             this.mnuArmyWhiteClassic.Checked = false;
             this.mnuArmyWhiteAnimals.Checked = false;
             this.mnuArmyWhiteEmpowered.Checked = true;
+            this.mnuArmyWhiteChancellor.Checked = false;
         }
 
         private void mnuArmyWhiteAnimals_Click(object sender, EventArgs e)
@@ -3727,6 +3747,17 @@ namespace SharpChess
             this.mnuArmyWhiteClassic.Checked = false;
             this.mnuArmyWhiteAnimals.Checked = true;
             this.mnuArmyWhiteEmpowered.Checked = false;
+            this.mnuArmyWhiteChancellor.Checked = false;
+        }
+
+        private void mnuArmyWhiteChancellor_Click(object sender, EventArgs e)
+        {
+            this.mnuArmyWhiteClassic.Checked = false;
+            this.mnuArmyWhiteAnimals.Checked = false;
+            this.mnuArmyWhiteEmpowered.Checked = false;
+            this.mnuArmyWhiteChancellor.Checked = true;
+            Game.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
+            // better to put these in a  helper function that sets all to false;
         }
 
     }
