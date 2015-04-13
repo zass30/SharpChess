@@ -50,7 +50,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test References\ArmiesTest.cs" />
+    <Compile Include="ArmiesTest.cs" />
     <Compile Include="BestMoveTest.cs" />
     <Compile Include="GameTest.cs" />
     <Compile Include="HashTableCheckTest.cs" />

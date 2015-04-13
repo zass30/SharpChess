@@ -279,17 +279,11 @@ namespace SharpChess.Model
 
                 // for each p in pieces. 
                 // set p.Role = GetRoleFromArmyAndPiece
-                if (value == Armies.ArmyNames.Chancellor)
+                foreach (Piece p in Pieces)
                 {
-                    foreach (Piece p in Pieces)
-                    {
-                        if (p.Role == Piece.PieceNames.Queen)
-                        {
-                            p.Base.Top = new PieceChancellor(p); ;
-                        }
-                    }
+                    p.Base.Top = Armies.PieceTopForArmy(value, p);
                 }
-            } 
+            }
         }
         
 

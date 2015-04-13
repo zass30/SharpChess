@@ -29,19 +29,19 @@ namespace SharpChess.Model.Tests
 
             // test queen is queen
             Piece p = Board_Accessor.GetPiece(3, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Queen);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Queen);
 
             p = Board_Accessor.GetPiece(4, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.King);
+            Assert.AreEqual(p.Role, Piece.PieceNames.King);
 
             p = Board_Accessor.GetPiece(0, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Rook);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Rook);
 
             p = Board_Accessor.GetPiece(1, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Knight);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Knight);
 
             p = Board_Accessor.GetPiece(2, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Bishop);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Bishop);
         }
 
         [TestMethod]
@@ -57,19 +57,32 @@ namespace SharpChess.Model.Tests
 
             // test queen is chancellor
             Piece p = Board_Accessor.GetPiece(3, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Chancellor);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Chancellor);
 
             p = Board_Accessor.GetPiece(4, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.King);
+            Assert.AreEqual(p.Role, Piece.PieceNames.King);
 
             p = Board_Accessor.GetPiece(0, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Rook);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Rook);
 
             p = Board_Accessor.GetPiece(1, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Knight);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Knight);
 
             p = Board_Accessor.GetPiece(2, 0);
-            Assert.AreEqual(p.Name, Piece.PieceNames.Bishop);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Bishop);
+
+            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Classic;
+
+            // test queen is queen
+            p = Board_Accessor.GetPiece(3, 0);
+            Assert.AreEqual(p.Role, Piece.PieceNames.Queen);
+        }
+
+
+        [TestMethod]
+        public void Armies_Role_Mapping()
+        {
+
         }
     }
 }
