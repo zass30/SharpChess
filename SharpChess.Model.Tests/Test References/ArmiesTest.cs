@@ -50,7 +50,7 @@ namespace SharpChess.Model.Tests
 
 
             // set armies to chancellor
-            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
+         //   Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
 
             // set up a starting position
             Game_Accessor.NewInternal();
@@ -75,7 +75,7 @@ namespace SharpChess.Model.Tests
             Assert.AreEqual(p.Role, Piece.PieceNames.Bishop);
 
             // Reset armies to classic
-            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Classic;
+     //       Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
     }
 }
