@@ -119,6 +119,18 @@ namespace SharpChess.Model
         }
 
         /// <summary>
+        /// Gets the piece's name.
+        /// </summary>
+        public Piece.PieceNames Role
+        {
+            get
+            {
+                return Piece.PieceNames.Chancellor;
+            }
+        }
+
+
+        /// <summary>
         /// Gets the positional points assigned to this piece.
         /// </summary>
         public int PositionalPoints

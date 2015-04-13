@@ -40,6 +40,8 @@ namespace SharpChess.Model
     /// </summary>
     public class Piece : IPieceTop
     {
+        private PieceNames pieceNames;
+
         #region Constructors and Destructors
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace SharpChess.Model
             Square square = Board.GetSquare(file, rank);
 
             this.Player = player;
+            this.Army = player.Army;
             this.StartLocation = this.Square = square;
             square.Piece = this;
             this.IdentifierCode = identifier;
@@ -113,6 +116,12 @@ namespace SharpChess.Model
                 default:
                     throw new Exception("Unknown piece name: " + name);
             }
+        }
+
+        public Piece(PieceNames pieceNames)
+        {
+            // TODO: Complete member initialization
+            this.pieceNames = pieceNames;
         }
 
         #endregion
@@ -435,6 +444,8 @@ namespace SharpChess.Model
             }
         }
 
+        public Armies.ArmyNames Army { get; set; }
+
         /// <summary>
         ///  Gets the image index for this piece. Used to determine which graphic image is displayed for thie piece.
         /// </summary>
@@ -475,6 +486,17 @@ namespace SharpChess.Model
             get
             {
                 return this.Top.Name;
+            }
+        }
+
+        /// <summary>
+        /// Gets the piece's name.
+        /// </summary>
+        public Piece.PieceNames Role
+        {
+            get
+            {
+                return this.Top.Role;
             }
         }
 
@@ -532,7 +554,7 @@ namespace SharpChess.Model
         /// <summary>
         ///   Gets or sets the identifier code for the piece. e.g. WhitePawn1
         /// </summary>
-        private PieceIdentifierCodes IdentifierCode { get; set; }
+        public PieceIdentifierCodes IdentifierCode { get; set; }
 
         #endregion
 

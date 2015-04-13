@@ -2340,6 +2340,11 @@
             Gets the name of the piece.
             </summary>
         </member>
+        <member name="P:SharpChess.Model.IPieceTop.Role">
+            <summary>
+            Gets the role of the piece.
+            </summary>
+        </member>
         <member name="P:SharpChess.Model.IPieceTop.PositionalPoints">
             <summary>
             Gets the positional score points of the piece.
@@ -3086,6 +3091,11 @@
             Gets the piece's name.
             </summary>
         </member>
+        <member name="P:SharpChess.Model.Piece.Role">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
         <member name="P:SharpChess.Model.Piece.NoOfMoves">
             <summary>
               Gets or sets number of moves the piece has made.
@@ -3402,6 +3412,11 @@
             Gets the piece's name.
             </summary>
         </member>
+        <member name="P:SharpChess.Model.PieceBishop.Role">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
         <member name="P:SharpChess.Model.PieceBishop.PositionalPoints">
             <summary>
             Gets the positional points assigned to this piece.
@@ -3475,6 +3490,11 @@
             </summary>
         </member>
         <member name="P:SharpChess.Model.PieceChancellor.Name">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.PieceChancellor.Role">
             <summary>
             Gets the piece's name.
             </summary>
@@ -3613,6 +3633,11 @@
             Gets the piece's name.
             </summary>
         </member>
+        <member name="P:SharpChess.Model.PieceKing.Role">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
         <member name="P:SharpChess.Model.PieceKing.PositionalPoints">
             <summary>
             Gets the positional points assigned to this piece.
@@ -3692,6 +3717,11 @@
             </summary>
         </member>
         <member name="P:SharpChess.Model.PieceKnight.Name">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.PieceKnight.Role">
             <summary>
             Gets the piece's name.
             </summary>
@@ -3786,6 +3816,11 @@
               Gets the piece's name.
             </summary>
         </member>
+        <member name="P:SharpChess.Model.PiecePawn.Role">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
         <member name="P:SharpChess.Model.PiecePawn.PositionalPoints">
             <summary>
               Gets the positional points assigned to this piece.
@@ -3869,6 +3904,11 @@
             Gets the piece's name.
             </summary>
         </member>
+        <member name="P:SharpChess.Model.PieceQueen.Role">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
         <member name="P:SharpChess.Model.PieceQueen.PositionalPoints">
             <summary>
             Gets the positional points assigned to this piece.
@@ -3947,6 +3987,11 @@
             </summary>
         </member>
         <member name="P:SharpChess.Model.PieceRook.Name">
+            <summary>
+            Gets the piece's name.
+            </summary>
+        </member>
+        <member name="P:SharpChess.Model.PieceRook.Role">
             <summary>
             Gets the piece's name.
             </summary>
@@ -4054,6 +4099,11 @@
         <member name="M:SharpChess.Model.Player.#ctor">
             <summary>
               Initializes a new instance of the <see cref="T:SharpChess.Model.Player"/> class.
+            </summary>
+        </member>
+        <member name="F:SharpChess.Model.Player.p_Army">
+            <summary>
+              Gets or sets the player's army.
             </summary>
         </member>
         <member name="M:SharpChess.Model.Player.PieceTypes">
@@ -4186,11 +4236,6 @@
         <member name="P:SharpChess.Model.Player.Colour">
             <summary>
               Gets or sets the player's colour.
-            </summary>
-        </member>
-        <member name="P:SharpChess.Model.Player.Army">
-            <summary>
-              Gets or sets the player's army.
             </summary>
         </member>
         <member name="P:SharpChess.Model.Player.HasCastled">

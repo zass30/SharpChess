@@ -265,8 +265,34 @@ namespace SharpChess.Model
         /// <summary>
         ///   Gets or sets the player's army.
         /// </summary>
-        public Armies.ArmyNames Army { get; set; }
-
+     //   public Armies.ArmyNames Army { get; set; }
+        private Armies.ArmyNames p_Army;
+        public Armies.ArmyNames Army
+        {
+            get
+            {
+                return p_Army;
+            }
+            set
+            {
+                p_Army = value;
+                if (value == Armies.ArmyNames.Chancellor)
+                {
+                    foreach (Piece p in Pieces)
+                    {
+                        if (p.Role == Piece.PieceNames.Queen)
+                        {
+                            p.Base.Top = new PieceChancellor(p); ;
+                          //  p.Top = new PieceChancellor(p);
+                            var v = p.Role;
+                            var q = v;
+                            //         public Piece(PieceNames name, Player player, int file, int rank, PieceIdentifierCodes identifier)
+                        }
+                    }
+                }
+            } 
+        }
+        
 
         /// <summary>
         ///   Gets or sets a value indicating whether the player has castled yet.

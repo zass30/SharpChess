@@ -65,6 +65,11 @@ namespace SharpChess.Model
         Piece.PieceNames Name { get; }
 
         /// <summary>
+        /// Gets the role of the piece.
+        /// </summary>
+        Piece.PieceNames Role { get; }
+
+        /// <summary>
         /// Gets the positional score points of the piece.
         /// </summary>
         int PositionalPoints { get; }
