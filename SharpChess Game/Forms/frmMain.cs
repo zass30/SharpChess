@@ -635,6 +635,17 @@ namespace SharpChess
         /// The timer.
         /// </summary>
         private Timer timer;
+        private MenuItem menuItem3;
+        private MenuItem mnuMidline;
+        private MenuItem menuItem6;
+        private MenuItem mnuArmyWhiteClassic;
+        private MenuItem mnuArmyWhiteEmpowered;
+        private MenuItem mnuArmyWhiteAnimals;
+        private MenuItem menuItem5;
+        private MenuItem menuItem10;
+        private MenuItem menuItem11;
+        private MenuItem menuItem12;
+        private MenuItem menuItem13;
 
         /// <summary>
         /// The txt output.
@@ -1126,6 +1137,17 @@ namespace SharpChess
             this.imgTiles = new System.Windows.Forms.ImageList(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.menuItem3 = new System.Windows.Forms.MenuItem();
+            this.mnuMidline = new System.Windows.Forms.MenuItem();
+            this.menuItem6 = new System.Windows.Forms.MenuItem();
+            this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.mnuArmyWhiteClassic = new System.Windows.Forms.MenuItem();
+            this.mnuArmyWhiteEmpowered = new System.Windows.Forms.MenuItem();
+            this.mnuArmyWhiteAnimals = new System.Windows.Forms.MenuItem();
+            this.menuItem10 = new System.Windows.Forms.MenuItem();
+            this.menuItem11 = new System.Windows.Forms.MenuItem();
+            this.menuItem12 = new System.Windows.Forms.MenuItem();
+            this.menuItem13 = new System.Windows.Forms.MenuItem();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPerftDepth)).BeginInit();
             this.SuspendLayout();
@@ -1163,7 +1185,8 @@ namespace SharpChess
             this.mnuView,
             this.mnuGame,
             this.mnuComputer,
-            this.mnuHelp});
+            this.mnuHelp,
+            this.menuItem3});
             // 
             // mnuFile
             // 
@@ -2021,9 +2044,81 @@ namespace SharpChess
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // menuItem3
+            // 
+            this.menuItem3.Index = 6;
+            this.menuItem3.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuMidline,
+            this.menuItem13,
+            this.menuItem6,
+            this.menuItem5});
+            this.menuItem3.Text = "&Variants";
+            // 
+            // mnuMidline
+            // 
+            this.mnuMidline.Index = 0;
+            this.mnuMidline.Text = "&Midline";
+            this.mnuMidline.Click += new System.EventHandler(this.mnuMidline_Click);
+            // 
+            // menuItem6
+            // 
+            this.menuItem6.Index = 2;
+            this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuArmyWhiteClassic,
+            this.mnuArmyWhiteEmpowered,
+            this.mnuArmyWhiteAnimals});
+            this.menuItem6.Text = "White Army";
+            // 
+            // menuItem5
+            // 
+            this.menuItem5.Index = 3;
+            this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem10,
+            this.menuItem11,
+            this.menuItem12});
+            this.menuItem5.Text = "Black Army";
+            // 
+            // mnuArmyWhiteClassic
+            // 
+            this.mnuArmyWhiteClassic.Index = 0;
+            this.mnuArmyWhiteClassic.Text = "Classic";
+            this.mnuArmyWhiteClassic.Click += new System.EventHandler(this.mnuArmyWhiteClassic_Click);
+            // 
+            // mnuArmyWhiteEmpowered
+            // 
+            this.mnuArmyWhiteEmpowered.Index = 1;
+            this.mnuArmyWhiteEmpowered.Text = "Empowered";
+            this.mnuArmyWhiteEmpowered.Click += new System.EventHandler(this.mnuArmyWhiteEmpowered_Click);
+            // 
+            // mnuArmyWhiteAnimals
+            // 
+            this.mnuArmyWhiteAnimals.Index = 2;
+            this.mnuArmyWhiteAnimals.Text = "Animals";
+            this.mnuArmyWhiteAnimals.Click += new System.EventHandler(this.mnuArmyWhiteAnimals_Click);
+            // 
+            // menuItem10
+            // 
+            this.menuItem10.Index = 0;
+            this.menuItem10.Text = "Classic";
+            // 
+            // menuItem11
+            // 
+            this.menuItem11.Index = 1;
+            this.menuItem11.Text = "Empowered";
+            // 
+            // menuItem12
+            // 
+            this.menuItem12.Index = 2;
+            this.menuItem12.Text = "Animals";
+            // 
+            // menuItem13
+            // 
+            this.menuItem13.Index = 1;
+            this.menuItem13.Text = "-";
+            // 
             // frmMain
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(690, 539);
             this.Controls.Add(this.tbr);
             this.Controls.Add(this.groupBox1);
@@ -2374,9 +2469,7 @@ namespace SharpChess
             {
                 this.lblWhiteClock.BorderStyle = BorderStyle.FixedSingle;
                 this.lblBlackClock.BorderStyle = BorderStyle.None;
-                this.lblWhiteClock.BackColor = (Game.PlayerWhite.Status == Player.PlayerStatusNames.InCheckMate ||
-                                                Game.PlayerBlack.Status == Player.PlayerStatusNames.HasCrossedMidline ||
-                                                Game.PlayerWhite.Status == Player.PlayerStatusNames.InStalemate)
+                this.lblWhiteClock.BackColor = Game.PlayerWhite.Status == Player.PlayerStatusNames.InCheckMate
                                                    ? Color.Red
                                                    : (Game.PlayerWhite.IsInCheck ? Color.Orange : Color.LightGray);
                 this.lblBlackClock.BackColor = Color.FromName(KnownColor.Control.ToString());
@@ -2386,9 +2479,7 @@ namespace SharpChess
                 this.lblBlackClock.BorderStyle = BorderStyle.FixedSingle;
                 this.lblWhiteClock.BorderStyle = BorderStyle.None;
                 this.lblWhiteClock.BackColor = Color.FromName(KnownColor.Control.ToString());
-                this.lblBlackClock.BackColor = (Game.PlayerBlack.Status == Player.PlayerStatusNames.InCheckMate ||
-                                                Game.PlayerWhite.Status == Player.PlayerStatusNames.HasCrossedMidline ||
-                                                Game.PlayerBlack.Status == Player.PlayerStatusNames.InStalemate)
+                this.lblBlackClock.BackColor = Game.PlayerBlack.Status == Player.PlayerStatusNames.InCheckMate
                                                    ? Color.Red
                                                    : (Game.PlayerBlack.IsInCheck ? Color.Orange : Color.LightGray);
             }
@@ -2425,14 +2516,6 @@ namespace SharpChess
 
                 case Player.PlayerStatusNames.InCheckMate:
                     this.lblStage.Text += Game.PlayerToPlay.Colour.ToString() + " in checkmate!";
-                    break;
-
-                case Player.PlayerStatusNames.HasCrossedMidline:
-                    this.lblStage.Text += Game.PlayerToPlay.Colour.ToString() + " crossed midline!";
-                    break;
-
-                case Player.PlayerStatusNames.LostToMidline:
-                    this.lblStage.Text += Game.PlayerToPlay.OpposingPlayer.Colour.ToString() + " crossed midline!";
                     break;
 
                 case Player.PlayerStatusNames.InStalemate:
@@ -3015,6 +3098,7 @@ namespace SharpChess
             // Put FEN position string into the clipboard
             Clipboard.SetDataObject(Fen.GetBoardPosition());
         }
+
 
         /// <summary>
         /// The mnu difficulty_ click.
@@ -3617,5 +3701,33 @@ namespace SharpChess
         }
 
         #endregion
+
+        private void mnuMidline_Click(object sender, EventArgs e)
+        {
+            this.mnuMidline.Checked = !this.mnuMidline.Checked;
+        }
+
+        private void mnuArmyWhiteClassic_Click(object sender, EventArgs e)
+        {
+            this.mnuArmyWhiteClassic.Checked = true;
+            this.mnuArmyWhiteAnimals.Checked = false;
+            this.mnuArmyWhiteEmpowered.Checked = false;
+        }
+
+        private void mnuArmyWhiteEmpowered_Click(object sender, EventArgs e)
+        {
+            // make sure to clear out all hashes/caches on army switch
+            this.mnuArmyWhiteClassic.Checked = false;
+            this.mnuArmyWhiteAnimals.Checked = false;
+            this.mnuArmyWhiteEmpowered.Checked = true;
+        }
+
+        private void mnuArmyWhiteAnimals_Click(object sender, EventArgs e)
+        {
+            this.mnuArmyWhiteClassic.Checked = false;
+            this.mnuArmyWhiteAnimals.Checked = true;
+            this.mnuArmyWhiteEmpowered.Checked = false;
+        }
+
     }
 }
