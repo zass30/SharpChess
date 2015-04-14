@@ -47,8 +47,6 @@ namespace SharpChess.Model.Tests
         [TestMethod]
         public void Armies_Setup_Chancellor()
         {
-
-
             // set armies to chancellor
             Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
 
@@ -78,6 +76,13 @@ namespace SharpChess.Model.Tests
             Assert.AreEqual(p.Role, Piece.PieceNames.Queen);
         }
 
+        [TestMethod]
+        public void Armies_Moves_Chancellor()
+        {
+            string fen = "8/8/3k4/2q5/3Q4/8/1K6/8";
+            // set up fen
+            // king should have only 2 legal moves
+        }
 
         [TestMethod]
         public void Armies_Role_Mapping()

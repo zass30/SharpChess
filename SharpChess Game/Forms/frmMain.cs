@@ -642,9 +642,9 @@ namespace SharpChess
         private MenuItem mnuArmyWhiteEmpowered;
         private MenuItem mnuArmyWhiteAnimals;
         private MenuItem menuItem5;
-        private MenuItem menuItem10;
-        private MenuItem menuItem11;
-        private MenuItem menuItem12;
+        private MenuItem mnuArmyBlackClassic;
+        private MenuItem mnuArmyBlackEmpowered;
+        private MenuItem mnuArmyBlackAnimals;
         private MenuItem menuItem13;
         private MenuItem mnuArmyWhiteChancellor;
         private MenuItem mnuArmyBlackChancellor;
@@ -1088,9 +1088,9 @@ namespace SharpChess
             this.mnuArmyWhiteAnimals = new System.Windows.Forms.MenuItem();
             this.mnuArmyWhiteChancellor = new System.Windows.Forms.MenuItem();
             this.menuItem5 = new System.Windows.Forms.MenuItem();
-            this.menuItem10 = new System.Windows.Forms.MenuItem();
-            this.menuItem11 = new System.Windows.Forms.MenuItem();
-            this.menuItem12 = new System.Windows.Forms.MenuItem();
+            this.mnuArmyBlackClassic = new System.Windows.Forms.MenuItem();
+            this.mnuArmyBlackEmpowered = new System.Windows.Forms.MenuItem();
+            this.mnuArmyBlackAnimals = new System.Windows.Forms.MenuItem();
             this.mnuArmyBlackChancellor = new System.Windows.Forms.MenuItem();
             this.tbr = new System.Windows.Forms.ToolBar();
             this.tbrNew = new System.Windows.Forms.ToolBarButton();
@@ -1477,31 +1477,35 @@ namespace SharpChess
             // 
             this.menuItem5.Index = 3;
             this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.menuItem10,
-            this.menuItem11,
-            this.menuItem12,
+            this.mnuArmyBlackClassic,
+            this.mnuArmyBlackEmpowered,
+            this.mnuArmyBlackAnimals,
             this.mnuArmyBlackChancellor});
             this.menuItem5.Text = "Black Army";
             // 
-            // menuItem10
+            // mnuArmyBlackClassic
             // 
-            this.menuItem10.Index = 0;
-            this.menuItem10.Text = "Classic";
+            this.mnuArmyBlackClassic.Index = 0;
+            this.mnuArmyBlackClassic.Text = "Classic";
+            this.mnuArmyBlackClassic.Click += new System.EventHandler(this.mnuArmyBlackClassic_Click);
             // 
-            // menuItem11
+            // mnuArmyBlackEmpowered
             // 
-            this.menuItem11.Index = 1;
-            this.menuItem11.Text = "Empowered";
+            this.mnuArmyBlackEmpowered.Index = 1;
+            this.mnuArmyBlackEmpowered.Text = "Empowered";
+            this.mnuArmyBlackEmpowered.Click += new System.EventHandler(this.mnuArmyBlackEmpowered_Click);
             // 
-            // menuItem12
+            // mnuArmyBlackAnimals
             // 
-            this.menuItem12.Index = 2;
-            this.menuItem12.Text = "Animals";
+            this.mnuArmyBlackAnimals.Index = 2;
+            this.mnuArmyBlackAnimals.Text = "Animals";
+            this.mnuArmyBlackAnimals.Click += new System.EventHandler(this.mnuArmyBlackAnimals_Click);
             // 
             // mnuArmyBlackChancellor
             // 
             this.mnuArmyBlackChancellor.Index = 3;
             this.mnuArmyBlackChancellor.Text = "Chancellor";
+            this.mnuArmyBlackChancellor.Click += new System.EventHandler(this.mnuArmyBlackChancellor_Click);
             // 
             // tbr
             // 
@@ -3726,39 +3730,78 @@ namespace SharpChess
 
         private void mnuArmyWhiteClassic_Click(object sender, EventArgs e)
         {
+            clearWhiteArmyCheckBoxes();
             this.mnuArmyWhiteClassic.Checked = true;
-            this.mnuArmyWhiteAnimals.Checked = false;
-            this.mnuArmyWhiteEmpowered.Checked = false;
-            this.mnuArmyWhiteChancellor.Checked = false;
             Game.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
 
         private void mnuArmyWhiteEmpowered_Click(object sender, EventArgs e)
         {
-            // make sure to clear out all hashes/caches on army switch
-            this.mnuArmyWhiteClassic.Checked = false;
-            this.mnuArmyWhiteAnimals.Checked = false;
+            clearWhiteArmyCheckBoxes();
             this.mnuArmyWhiteEmpowered.Checked = true;
-            this.mnuArmyWhiteChancellor.Checked = false;
+            Game.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
 
         private void mnuArmyWhiteAnimals_Click(object sender, EventArgs e)
         {
-            this.mnuArmyWhiteClassic.Checked = false;
+            clearWhiteArmyCheckBoxes();
             this.mnuArmyWhiteAnimals.Checked = true;
-            this.mnuArmyWhiteEmpowered.Checked = false;
-            this.mnuArmyWhiteChancellor.Checked = false;
+            Game.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
 
         private void mnuArmyWhiteChancellor_Click(object sender, EventArgs e)
         {
+            clearWhiteArmyCheckBoxes();
+            this.mnuArmyWhiteChancellor.Checked = true;
+            Game.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
+        }
+
+
+
+        private void mnuArmyBlackClassic_Click(object sender, EventArgs e)
+        {
+            clearBlackArmyCheckBoxes();
+            this.mnuArmyBlackClassic.Checked = true;
+            Game.PlayerBlack.Army = Armies.ArmyNames.Classic;
+        }
+
+        private void mnuArmyBlackEmpowered_Click(object sender, EventArgs e)
+        {
+            clearBlackArmyCheckBoxes();
+            this.mnuArmyBlackEmpowered.Checked = true;
+            Game.PlayerBlack.Army = Armies.ArmyNames.Classic;
+        }
+
+        private void mnuArmyBlackAnimals_Click(object sender, EventArgs e)
+        {
+            clearBlackArmyCheckBoxes();
+            this.mnuArmyBlackAnimals.Checked = true;
+            Game.PlayerBlack.Army = Armies.ArmyNames.Classic;
+        }
+
+        private void mnuArmyBlackChancellor_Click(object sender, EventArgs e)
+        {
+            clearBlackArmyCheckBoxes();
+            this.mnuArmyBlackChancellor.Checked = true;
+            Game.PlayerBlack.Army = Armies.ArmyNames.Chancellor;
+        }
+
+
+        private void clearWhiteArmyCheckBoxes()
+        {
             this.mnuArmyWhiteClassic.Checked = false;
             this.mnuArmyWhiteAnimals.Checked = false;
             this.mnuArmyWhiteEmpowered.Checked = false;
-            this.mnuArmyWhiteChancellor.Checked = true;
-            Game.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
-            // better to put these in a  helper function that sets all to false;
+            this.mnuArmyWhiteChancellor.Checked = false;
         }
 
+
+        private void clearBlackArmyCheckBoxes()
+        {
+            this.mnuArmyBlackClassic.Checked = false;
+            this.mnuArmyBlackAnimals.Checked = false;
+            this.mnuArmyBlackEmpowered.Checked = false;
+            this.mnuArmyBlackChancellor.Checked = false;
+        }
     }
 }

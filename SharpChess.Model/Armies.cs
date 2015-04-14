@@ -16,7 +16,7 @@ namespace SharpChess.Model
         }
         #endregion
 
-        // given a name (like Queen) and an army (like Animals), return a role (like Chancellor)
+        // given a piece (like Queen) and an army (like Animals), return a role (like Chancellor)
         public static IPieceTop PieceTopForArmy(Armies.ArmyNames army, Piece basePiece)
         {
             Piece.PieceNames name = basePiece.Name;
