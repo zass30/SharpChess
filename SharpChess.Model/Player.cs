@@ -283,6 +283,8 @@ namespace SharpChess.Model
                 {
                     p.Base.Top = Armies.PieceTopForArmy(value, p);
                 }
+                // clear hash table
+                HashTable.Clear();
             }
         }
         
@@ -398,8 +400,8 @@ namespace SharpChess.Model
 
             foreach (Piece piece in this.Pieces)
             {
-                if (!this._PieceTypes.Contains(piece.Name))
-                    _PieceTypes.Add(piece.Name);
+                if (!this._PieceTypes.Contains(piece.Role))
+                    _PieceTypes.Add(piece.Role);
             }
             return this._PieceTypes;
         }

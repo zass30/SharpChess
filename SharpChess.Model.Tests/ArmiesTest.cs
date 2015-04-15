@@ -79,9 +79,19 @@ namespace SharpChess.Model.Tests
         [TestMethod]
         public void Armies_Moves_Chancellor()
         {
-            string fen = "8/8/3k4/2q5/3Q4/8/1K6/8";
-            // set up fen
-            // king should have only 2 legal moves
+            string fen = "8/8/3k4/2q5/3Q4/8/1K6/8 b - - 0 1";
+            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
+            Game_Accessor.NewInternal(fen);
+            Square s = Board_Accessor.GetSquare("d6");
+            Piece p = s.Piece;
+
+            // king should only have 3 legal moves here
+            Assert.AreEqual(p.Role, Piece.PieceNames.King);
+            Moves moves = new Moves();
+            p.GenerateLegalMoves(moves);
+            Assert.AreEqual(moves.Count, 3);
+
+            // todo: still a bug if you load this position into the game ui, the king has 4 moves not 3.
         }
 
         [TestMethod]

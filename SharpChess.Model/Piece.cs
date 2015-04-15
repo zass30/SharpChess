@@ -571,6 +571,7 @@ namespace SharpChess.Model
         {
             switch (PieceName)
             {
+                    //classic
                 case PieceNames.Bishop:
                     return PieceBishop.DoesPieceAttackSquare(square, player);
                 case PieceNames.King:
@@ -583,6 +584,11 @@ namespace SharpChess.Model
                     return PieceQueen.DoesPieceAttackSquare(square, player);
                 case PieceNames.Rook:
                     return PieceRook.DoesPieceAttackSquare(square, player);
+
+                    //chancellor
+                case PieceNames.Chancellor:
+                    return PieceChancellor.DoesPieceAttackSquare(square, player);
+
                 default:
                     throw new Exception("Unknown piece type: " + PieceName);
             }
@@ -605,6 +611,9 @@ namespace SharpChess.Model
                     return PieceQueen.DoesPieceAttackSquare(square, player, out attackingPiece);
                 case PieceNames.Rook:
                     return PieceRook.DoesPieceAttackSquare(square, player, out attackingPiece);
+
+                case PieceNames.Chancellor:
+                    return PieceChancellor.DoesPieceAttackSquare(square, player, out attackingPiece);
                 default:
                     throw new Exception("Unknown piece type: " + PieceName);
             }
