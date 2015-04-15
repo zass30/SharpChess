@@ -331,7 +331,14 @@ namespace SharpChess.Model
             King,
 
             /// Chancellor Army
-            Chancellor
+            Chancellor,
+
+            // empowered army
+            EmpoweredKnight,
+            EmpoweredRook,
+            EmpoweredBishop,
+            EmpoweredQueen
+            
         }
 
         #endregion
@@ -1100,6 +1107,53 @@ namespace SharpChess.Model
                 this.Player.IncreaseMaterialCount();
             }
         }
+
+        #endregion
+
+        #region Private Methods
+        #region private methods
+
+        public static int[] empoweredVectors = { 1, 16, -1, -16 };
+        private bool IsEmpoweredAsRook()
+        {
+            Square square;
+            for (int i = 0; i < empoweredVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour && square.Piece.Role == Piece.PieceNames.EmpoweredRook)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool IsEmpoweredAsBishop()
+        {
+            Square square;
+            for (int i = 0; i < empoweredVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour && square.Piece.Role == Piece.PieceNames.EmpoweredBishop)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private bool IsEmpoweredAsKnight()
+        {
+            Square square;
+            for (int i = 0; i < empoweredVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour && square.Piece.Role == Piece.PieceNames.EmpoweredKnight)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        #endregion
 
         #endregion
     }

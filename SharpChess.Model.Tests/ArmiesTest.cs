@@ -92,6 +92,7 @@ namespace SharpChess.Model.Tests
             Assert.AreEqual(moves.Count, 3);
 
             // todo: still a bug if you load this position into the game ui, the king has 4 moves not 3.
+            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
 
         [TestMethod]

@@ -12,7 +12,8 @@ namespace SharpChess.Model
         public enum ArmyNames
         {
             Classic,
-            Chancellor
+            Chancellor,
+            Empowered
         }
         #endregion
 
