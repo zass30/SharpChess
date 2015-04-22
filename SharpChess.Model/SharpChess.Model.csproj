@@ -80,6 +80,7 @@
     <Compile Include="PieceEmpoweredKnight.cs" />
     <Compile Include="PieceKnight.cs" />
     <Compile Include="PiecePawn.cs" />
+    <Compile Include="PieceEmpoweredQueen.cs" />
     <Compile Include="PieceQueen.cs" />
     <Compile Include="PieceEmpoweredRook.cs" />
     <Compile Include="PieceRook.cs" />

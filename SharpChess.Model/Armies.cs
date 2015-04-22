@@ -74,7 +74,7 @@ namespace SharpChess.Model
                     case Piece.PieceNames.Rook:
                         return new PieceEmpoweredRook(basePiece);
                     case Piece.PieceNames.Queen:
-                        return new PieceQueen(basePiece);
+                        return new PieceEmpoweredQueen(basePiece);
                     case Piece.PieceNames.King:
                         return new PieceKing(basePiece);
                     default:
