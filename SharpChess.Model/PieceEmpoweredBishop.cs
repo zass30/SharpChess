@@ -190,7 +190,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return 3250;
+                return 4250;
             }
         }
 

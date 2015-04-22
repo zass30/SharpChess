@@ -127,6 +127,7 @@ namespace SharpChess.Model.AI
         /// </returns>
         public static Move SuggestRandomMove(Player player)
         {
+            return null; // todo change this, but kill opening book for now.
             Hashtable hashtable = player.Colour == Player.PlayerColourNames.White ? HashtableWhite : HashtableBlack;
             if (hashtable.ContainsKey(Board.HashCodeA))
             {
