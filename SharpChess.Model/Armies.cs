@@ -61,6 +61,26 @@ namespace SharpChess.Model
                         throw new Exception("Unknown piece type: " + name + " " + army);
                 }
             }
+            else if (army == ArmyNames.Empowered)
+            {
+                switch (name)
+                {
+                    case Piece.PieceNames.Pawn:
+                        return new PiecePawn(basePiece);
+                    case Piece.PieceNames.Bishop:
+                        return new PieceEmpoweredBishop(basePiece);
+                    case Piece.PieceNames.Knight:
+                        return new PieceEmpoweredKnight(basePiece);
+                    case Piece.PieceNames.Rook:
+                        return new PieceRook(basePiece);
+                    case Piece.PieceNames.Queen:
+                        return new PieceQueen(basePiece);
+                    case Piece.PieceNames.King:
+                        return new PieceKing(basePiece);
+                    default:
+                        throw new Exception("Unknown piece type: " + name + " " + army);
+                }
+            }
             else
             {
                 throw new Exception("Unknown army type: " + name + " " + army);

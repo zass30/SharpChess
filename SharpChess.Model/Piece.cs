@@ -596,6 +596,20 @@ namespace SharpChess.Model
                 case PieceNames.Chancellor:
                     return PieceChancellor.DoesPieceAttackSquare(square, player);
 
+                case PieceNames.EmpoweredKnight:
+                case PieceNames.EmpoweredBishop:
+                    // for an empowered piece, we have to actually check the piece itself
+                    // loop through the players pieces, get the empowered piece, and check if it attacks.
+                    foreach (Piece p in player.Pieces)
+                    {
+                        if (p.Role == PieceName)
+                        {
+                            if (p.CanAttackSquare(square))
+                                return true;
+                        }
+                    }
+                    return false;
+
                 default:
                     throw new Exception("Unknown piece type: " + PieceName);
             }

@@ -91,14 +91,27 @@ namespace SharpChess.Model.Tests
             p.GenerateLegalMoves(moves);
             Assert.AreEqual(moves.Count, 3);
 
-            // todo: still a bug if you load this position into the game ui, the king has 4 moves not 3.
+            // todo: still a bug if you load this position into the game ui (classic), then switch to chancellor, the king has 4 moves not 3.
             Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
 
         [TestMethod]
-        public void Armies_Role_Mapping()
+        public void Armies_Moves_Empowered()
         {
+            string fen = "8/8/8/1k6/8/2BN4/8/K7 b - - 0 1";
 
+            // black king should be in check by knight empowered to bishop
+            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Empowered;
+            Game_Accessor.NewInternal(fen);
+            Assert.IsTrue(Game_Accessor.PlayerBlack.IsInCheck);
+
+
+            // black king should be in check by bishop empowered to knight
+            fen = "8/8/8/3k4/8/2BN4/8/K7 b - - 0 1";
+            Game_Accessor.NewInternal(fen);
+            Assert.IsTrue(Game_Accessor.PlayerBlack.IsInCheck);
+
+            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Classic;
         }
     }
 }

@@ -51,6 +51,7 @@ namespace SharpChess.Model
         /// Directional vectors of where the piece can go
         /// </summary>
         public static int[] moveVectors = { 17, -17, 15, -15 };
+        public static int[] empoweredAdjacencyVectors = { 1, -1, 16, -16 };
 
         #endregion
 
@@ -197,6 +198,18 @@ namespace SharpChess.Model
 
         #region Public Methods
 
+        public bool IsEmpoweredAsKnight()
+        {
+            Square square;
+            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredKnight)))
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Generate "lazy" moves for this piece, which is all usual legal moves, but also includes moves that put the king in check.
         /// </summary>
@@ -211,6 +224,13 @@ namespace SharpChess.Model
             for (int i = 0; i < moveVectors.Length; i++)
             {
                 Board.AppendPiecePath(moves, this.Base, this.Base.Player, moveVectors[i], movesType);
+            }
+
+            // get empowered status
+            if (IsEmpoweredAsKnight())
+            {
+                PieceKnight k = new PieceKnight(this.Base);
+                k.GenerateLazyMoves(moves, movesType);
             }
         }
 
@@ -236,6 +256,15 @@ namespace SharpChess.Model
                         break;
                 }
             }
+
+            // get empowered status
+            if (IsEmpoweredAsKnight())
+            {
+                PieceKnight k = new PieceKnight(this.Base);
+                if (k.CanAttackSquare(target_square))
+                    return true;
+            }
+
             return false;
         }
 
@@ -244,40 +273,6 @@ namespace SharpChess.Model
         #region Static methods
 
         static private Piece.PieceNames _pieceType = Piece.PieceNames.Bishop;
-        
-        /// <summary>
-        ///  static method to determine if a square is attacked by this piece
-        /// </summary>
-        /// <param name="square"></param>
-        /// <param name="player"></param>
-        /// <returns></returns>
-        static public bool DoesPieceAttackSquare(Square square, Player player)
-        {
-            for (int i = 0; i < moveVectors.Length; i++)
-            {
-                if (Board.LinesFirstPiece(player.Colour, _pieceType, square, moveVectors[i]) != null)
-                {
-                    return true;
-                }
-            }
-            return false;
-
-        }
-
-        static public bool DoesPieceAttackSquare(Square square, Player player, out Piece attackingPiece)
-        {
-            attackingPiece = null;
-            for (int i = 0; i < moveVectors.Length; i++)
-            {
-                if (Board.LinesFirstPiece(player.Colour, _pieceType, square, moveVectors[i]) != null)
-                {
-                    attackingPiece = Board.LinesFirstPiece(player.Colour, _pieceType, square, moveVectors[i]);
-                    return true;
-                }
-            }
-            return false;
-
-        }
 
         #endregion 
 

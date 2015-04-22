@@ -53,6 +53,7 @@ namespace SharpChess.Model
         /// Directional vectors of where the piece can go
         /// </summary>
         public static int[] moveVectors = { 33, 18, -14, -31, -33, -18, 14, 31 };
+        public static int[] empoweredAdjacencyVectors = { 1, -1, 16, -16 };
 
         #endregion
 
@@ -212,9 +213,6 @@ namespace SharpChess.Model
                             moves.Add(0, 0, Move.MoveNames.Standard, this.Base, this.Base.Square, square, square.Piece, 0, 0);
                         }
                     }
-                    // get empowered statu
-                    // if empowered as rook, check rook moves
-
                     break;
 
                 case Moves.MoveListNames.CapturesPromotions:
@@ -228,6 +226,26 @@ namespace SharpChess.Model
                     }
                     break;
             }
+
+            // get empowered status
+            if (IsEmpoweredAsBishop())
+            {
+                PieceBishop b = new PieceBishop(this.Base);
+                b.GenerateLazyMoves(moves, movesType);
+            }
+
+        }
+
+        public bool IsEmpoweredAsBishop()
+        {
+            Square square;
+            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredBishop)))
+                    return true;
+            }
+            return false;
         }
 
         public bool CanAttackSquare(Square target_square)
@@ -239,6 +257,15 @@ namespace SharpChess.Model
                 if (square != null && square.Ordinal == target_square.Ordinal)
                     return true;
             }
+            // get empowered status
+            if (IsEmpoweredAsBishop())
+            {
+                PieceBishop b = new PieceBishop(this.Base);
+                if (b.CanAttackSquare(target_square))
+                    return true;
+            }
+
+
             return false;
         }
 
@@ -247,23 +274,6 @@ namespace SharpChess.Model
         #region Static methods
 
         static private Piece.PieceNames _pieceType = Piece.PieceNames.Knight;
-        
-        /// <summary>
-        ///  static method to determine if a square is attacked by this piece
-        /// </summary>
-        /// <param name="square"></param>
-        /// <param name="player"></param>
-        /// <returns></returns>
-        /// 
-        static public bool DoesPieceAttackSquare(Square square, Player player)
-        {
-            return Piece.DoesLeaperPieceTypeAttackSquare(square, player, _pieceType, moveVectors);
-        }
-
-        static public bool DoesPieceAttackSquare(Square square, Player player, out Piece attackingPiece)
-        {
-            return Piece.DoesLeaperPieceTypeAttackSquare(square, player, _pieceType, moveVectors, out attackingPiece);
-        }
 
         #endregion 
     }
