@@ -3739,7 +3739,7 @@ namespace SharpChess
         {
             clearWhiteArmyCheckBoxes();
             this.mnuArmyWhiteEmpowered.Checked = true;
-            Game.PlayerWhite.Army = Armies.ArmyNames.Classic;
+            Game.PlayerWhite.Army = Armies.ArmyNames.Empowered;
         }
 
         private void mnuArmyWhiteAnimals_Click(object sender, EventArgs e)
@@ -3769,7 +3769,7 @@ namespace SharpChess
         {
             clearBlackArmyCheckBoxes();
             this.mnuArmyBlackEmpowered.Checked = true;
-            Game.PlayerBlack.Army = Armies.ArmyNames.Classic;
+            Game.PlayerBlack.Army = Armies.ArmyNames.Empowered;
         }
 
         private void mnuArmyBlackAnimals_Click(object sender, EventArgs e)
