@@ -111,7 +111,14 @@ namespace SharpChess.Model.Tests
             Game_Accessor.NewInternal(fen);
             Assert.IsTrue(Game_Accessor.PlayerBlack.IsInCheck);
 
+            // black king should be in check by knight empowered to rook
+            fen = "2k5/8/2NR4/8/8/8/8/K7 b - - 0 1";
+            Game_Accessor.NewInternal(fen);
+            Assert.IsTrue(Game_Accessor.PlayerBlack.IsInCheck);
+
             Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Classic;
+
+
         }
     }
 }

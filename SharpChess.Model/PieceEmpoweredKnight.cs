@@ -189,6 +189,30 @@ namespace SharpChess.Model
 
         #region Public Methods
 
+        public bool IsEmpoweredAsBishop()
+        {
+            Square square;
+            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredBishop)))
+                    return true;
+            }
+            return false;
+        }
+
+        public bool IsEmpoweredAsRook()
+        {
+            Square square;
+            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredRook)))
+                    return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Generate "lazy" moves for this piece, which is all usual legal moves, but also includes moves that put the king in check.
         /// </summary>
@@ -233,20 +257,15 @@ namespace SharpChess.Model
                 PieceBishop b = new PieceBishop(this.Base);
                 b.GenerateLazyMoves(moves, movesType);
             }
-
-        }
-
-        public bool IsEmpoweredAsBishop()
-        {
-            Square square;
-            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
+            if (IsEmpoweredAsRook())
             {
-                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
-                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredBishop)))
-                    return true;
+                PieceRook r = new PieceRook(this.Base);
+                r.GenerateLazyMoves(moves, movesType);
             }
-            return false;
+
         }
+
+
 
         public bool CanAttackSquare(Square target_square)
         {
@@ -264,7 +283,12 @@ namespace SharpChess.Model
                 if (b.CanAttackSquare(target_square))
                     return true;
             }
-
+            if (IsEmpoweredAsRook())
+            {
+                PieceRook r = new PieceRook(this.Base);
+                if (r.CanAttackSquare(target_square))
+                    return true;
+            }
 
             return false;
         }

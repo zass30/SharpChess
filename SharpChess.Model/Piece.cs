@@ -598,6 +598,7 @@ namespace SharpChess.Model
 
                 case PieceNames.EmpoweredKnight:
                 case PieceNames.EmpoweredBishop:
+                case PieceNames.EmpoweredRook:
                     // for an empowered piece, we have to actually check the piece itself
                     // loop through the players pieces, get the empowered piece, and check if it attacks.
                     foreach (Piece p in player.Pieces)
@@ -638,6 +639,7 @@ namespace SharpChess.Model
 
                 case PieceNames.EmpoweredKnight:
                 case PieceNames.EmpoweredBishop:
+                case PieceNames.EmpoweredRook:
                     // for an empowered piece, we have to actually check the piece itself
                     // loop through the players pieces, get the empowered piece, and check if it attacks.
                     foreach (Piece p in player.Pieces)

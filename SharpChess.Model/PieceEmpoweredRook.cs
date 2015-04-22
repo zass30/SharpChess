@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PieceBishop.cs" company="SharpChess.com">
+// <copyright file="PieceRook.cs" company="SharpChess.com">
 //   SharpChess.com
 // </copyright>
 // <summary>
-//   The piece bishop.
+//   The piece rook.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -26,31 +26,31 @@
 namespace SharpChess.Model
 {
     /// <summary>
-    /// A bishop piece top.
+    /// The piece rook.
     /// </summary>
-    public class PieceEmpoweredBishop : IPieceTop
+    public class PieceEmpoweredRook : IPieceTop
     {
         #region Constants and Fields
 
         /// <summary>
         /// Simple positional piece-square score values.
         /// </summary>
-        private static readonly int[] SquareValues =
-        {
+        private static readonly int[] SquareValues = 
+        { 
             10, 10, 10, 10, 10, 10, 10, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
-            10, 25, 20, 20, 20, 20, 25, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
-            10, 49, 30, 30, 30, 30, 49, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
+            10, 20, 20, 20, 20, 20, 20, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
+            10, 20, 30, 30, 30, 30, 20, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
             10, 20, 30, 40, 40, 30, 20, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
             10, 20, 30, 40, 40, 30, 20, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
-            10, 49, 30, 30, 30, 30, 49, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
-            10, 25, 20, 20, 20, 20, 25, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
+            10, 20, 30, 30, 30, 30, 20, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
+            10, 20, 20, 20, 20, 20, 20, 10,    0, 0, 0, 0, 0, 0, 0, 0, 
             10, 10, 10, 10, 10, 10, 10, 10,    0, 0, 0, 0, 0, 0, 0, 0
         };
 
         /// <summary>
         /// Directional vectors of where the piece can go
         /// </summary>
-        public static int[] moveVectors = { 17, -17, 15, -15 };
+        public static int[] moveVectors = { 1, -1, 16, -16 };
         public static int[] empoweredAdjacencyVectors = { 1, -1, 16, -16 };
 
         #endregion
@@ -58,12 +58,12 @@ namespace SharpChess.Model
         #region Constructors and Destructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PieceBishop"/> class.
+        /// Initializes a new instance of the <see cref="PieceRook"/> class.
         /// </summary>
         /// <param name="pieceBase">
-        /// Base part of the piece.
+        /// The piece base.
         /// </param>
-        public PieceEmpoweredBishop(Piece pieceBase)
+        public PieceEmpoweredRook(Piece pieceBase)
         {
             this.Base = pieceBase;
         }
@@ -79,7 +79,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return "B";
+                return "R";
             }
         }
 
@@ -95,7 +95,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return 3;
+                return 5;
             }
         }
 
@@ -106,7 +106,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return this.Base.Player.Colour == Player.PlayerColourNames.White ? 1 : 0;
+                return this.Base.Player.Colour == Player.PlayerColourNames.White ? 3 : 2;
             }
         }
 
@@ -128,9 +128,10 @@ namespace SharpChess.Model
         {
             get
             {
-                return Piece.PieceNames.Bishop;
+                return Piece.PieceNames.Rook;
             }
         }
+
 
         /// <summary>
         /// Gets the piece's name.
@@ -139,7 +140,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return Piece.PieceNames.EmpoweredBishop;
+                return Piece.PieceNames.EmpoweredRook;
             }
         }
 
@@ -152,23 +153,70 @@ namespace SharpChess.Model
             {
                 int intPoints = 0;
 
-                intPoints += SquareValues[this.Base.Square.Ordinal] << 1;
+                // After the opening, Rooks are penalized slightly depending on "taxicab" distance to the enemy king.
+                if (Game.Stage != Game.GameStageNames.Opening)
+                {
+                    intPoints -= this.Base.TaxiCabDistanceToEnemyKingPenalty();
+                }
 
                 if (Game.Stage != Game.GameStageNames.End)
                 {
-                    if (this.Base.CanBeDrivenAwayByPawn())
+                    // Rooks are given a bonus of 10(0) points for occupying a file with no friendly pawns and a bonus of 
+                    // 4(0) points if no enemy pawns lie on that file. 
+                    bool blnHasFiendlyPawn = false;
+                    bool blnHasEnemyPawn = false;
+                    Square squareThis = Board.GetSquare(this.Base.Square.File, 0);
+                    while (squareThis != null)
                     {
-                        intPoints -= 30;
+                        Piece piece = squareThis.Piece;
+                        if (piece != null && piece.Name == Piece.PieceNames.Pawn)
+                        {
+                            if (piece.Player.Colour == this.Base.Player.Colour)
+                            {
+                                blnHasFiendlyPawn = true;
+                            }
+                            else
+                            {
+                                blnHasEnemyPawn = true;
+                            }
+
+                            if (blnHasFiendlyPawn && blnHasEnemyPawn)
+                            {
+                                break;
+                            }
+                        }
+
+                        squareThis = Board.GetSquare(squareThis.Ordinal + 16);
+                    }
+
+                    if (!blnHasFiendlyPawn)
+                    {
+                        intPoints += 20;
+                    }
+
+                    if (!blnHasEnemyPawn)
+                    {
+                        intPoints += 10;
+                    }
+
+                    // 7th rank
+                    if (
+                        (this.Base.Player.Colour == Player.PlayerColourNames.White && this.Base.Square.Rank == 6)
+                        || 
+                        (this.Base.Player.Colour == Player.PlayerColourNames.Black && this.Base.Square.Rank == 1))
+                    {
+                        intPoints += 30;
                     }
                 }
 
                 // Mobility
                 Squares squares = new Squares();
                 squares.Add(this.Base.Square);
-                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, 15);
-                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, 17);
-                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, -15);
-                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, -17);
+                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, 1);
+                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, -1);
+                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, 16);
+                Board.LineThreatenedBy(this.Base.Player, squares, this.Base.Square, -16);
+
                 int intSquareValue = 0;
                 foreach (Square square in squares)
                 {
@@ -190,38 +238,15 @@ namespace SharpChess.Model
         {
             get
             {
-                return 3250;
+                return 5000;
+                    
+                    // - ((m_Base.Player.PawnsInPlay-5) * 125);  // lower the rook's value by 1/8 for each pawn above five of the side being valued, with the opposite adjustment for each pawn short of five
             }
         }
 
         #endregion
 
         #region Public Methods
-
-        public bool IsEmpoweredAsKnight()
-        {
-            Square square;
-            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
-            {
-                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
-                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredKnight)))
-                    return true;
-            }
-            return false;
-        }
-
-        public bool IsEmpoweredAsRook()
-        {
-            Square square;
-            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
-            {
-                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
-                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredRook)))
-                    return true;
-            }
-            return false;
-        }
-
 
         /// <summary>
         /// Generate "lazy" moves for this piece, which is all usual legal moves, but also includes moves that put the king in check.
@@ -240,15 +265,15 @@ namespace SharpChess.Model
             }
 
             // get empowered status
+            if (IsEmpoweredAsBishop())
+            {
+                PieceBishop b = new PieceBishop(this.Base);
+                b.GenerateLazyMoves(moves, movesType);
+            }
             if (IsEmpoweredAsKnight())
             {
                 PieceKnight k = new PieceKnight(this.Base);
                 k.GenerateLazyMoves(moves, movesType);
-            }
-            if (IsEmpoweredAsRook())
-            {
-                PieceRook r = new PieceRook(this.Base);
-                r.GenerateLazyMoves(moves, movesType);
             }
         }
 
@@ -274,21 +299,44 @@ namespace SharpChess.Model
                         break;
                 }
             }
-
-            // get empowered status
             if (IsEmpoweredAsKnight())
             {
                 PieceKnight k = new PieceKnight(this.Base);
                 if (k.CanAttackSquare(target_square))
                     return true;
             }
-            if (IsEmpoweredAsRook())
+            if (IsEmpoweredAsBishop())
             {
-                PieceRook r = new PieceRook(this.Base);
-                if (r.CanAttackSquare(target_square))
+                PieceBishop b = new PieceBishop(this.Base);
+                if (b.CanAttackSquare(target_square))
                     return true;
             }
 
+            return false;
+        }
+
+
+        public bool IsEmpoweredAsBishop()
+        {
+            Square square;
+            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredBishop)))
+                    return true;
+            }
+            return false;
+        }
+
+        public bool IsEmpoweredAsKnight()
+        {
+            Square square;
+            for (int i = 0; i < empoweredAdjacencyVectors.Length; i++)
+            {
+                square = Board.GetSquare(this.Base.Square.Ordinal + empoweredAdjacencyVectors[i]);
+                if (square != null && (square.Piece != null && (square.Piece.Player.Colour == this.Base.Player.Colour) && (square.Piece.Role == Piece.PieceNames.EmpoweredKnight)))
+                    return true;
+            }
             return false;
         }
 
@@ -296,9 +344,41 @@ namespace SharpChess.Model
 
         #region Static methods
 
-        static private Piece.PieceNames _pieceType = Piece.PieceNames.Bishop;
+        static private Piece.PieceNames _pieceType = Piece.PieceNames.Rook;
 
-        #endregion 
+        /// <summary>
+        ///  static method to determine if a square is attacked by this piece
+        /// </summary>
+        /// <param name="square"></param>
+        /// <param name="player"></param>
+        /// <returns></returns>
+        static public bool DoesPieceAttackSquare(Square square, Player player)
+        {
+            for (int i = 0; i < moveVectors.Length; i++)
+            {
+                if (Board.LinesFirstPiece(player.Colour, _pieceType, square, moveVectors[i]) != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
+        static public bool DoesPieceAttackSquare(Square square, Player player, out Piece attackingPiece)
+        {
+            attackingPiece = null;
+            for (int i = 0; i < moveVectors.Length; i++)
+            {
+                if (Board.LinesFirstPiece(player.Colour, _pieceType, square, moveVectors[i]) != null)
+                {
+                    attackingPiece = Board.LinesFirstPiece(player.Colour, _pieceType, square, moveVectors[i]);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        #endregion
     }
 }
