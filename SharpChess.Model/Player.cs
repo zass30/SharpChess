@@ -740,7 +740,11 @@ namespace SharpChess.Model
         /// </returns>
         public bool DetermineCheckStatus()
         {
-            return ((PieceKing)this.King.Top).DetermineCheckStatus();
+            if (this.King.Top is PieceKing)
+                return ((PieceKing)this.King.Top).DetermineCheckStatus();
+            else if (this.King.Top is PieceKingNoCastle)
+                return ((PieceKingNoCastle)this.King.Top).DetermineCheckStatus();
+            else throw new System.Exception("Unknown king type: " + this.King.Top.GetType());
         }
 
         /// <summary>

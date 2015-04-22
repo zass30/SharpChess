@@ -76,6 +76,7 @@
     <Compile Include="PieceBishop.cs" />
     <Compile Include="PieceChancellor.cs" />
     <Compile Include="PieceHashCodes.cs" />
+    <Compile Include="PieceKingNoCastle.cs" />
     <Compile Include="PieceKing.cs" />
     <Compile Include="PieceEmpoweredKnight.cs" />
     <Compile Include="PieceKnight.cs" />

@@ -56,7 +56,7 @@ namespace SharpChess.Model
                     case Piece.PieceNames.Queen:
                         return new PieceChancellor(basePiece);
                     case Piece.PieceNames.King:
-                        return new PieceKing(basePiece);
+                        return new PieceKingNoCastle(basePiece);
                     default:
                         throw new Exception("Unknown piece type: " + name + " " + army);
                 }
@@ -76,7 +76,7 @@ namespace SharpChess.Model
                     case Piece.PieceNames.Queen:
                         return new PieceEmpoweredQueen(basePiece);
                     case Piece.PieceNames.King:
-                        return new PieceKing(basePiece);
+                        return new PieceKingNoCastle(basePiece);
                     default:
                         throw new Exception("Unknown piece type: " + name + " " + army);
                 }
