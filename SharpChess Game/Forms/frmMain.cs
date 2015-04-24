@@ -3086,7 +3086,7 @@ namespace SharpChess
                 this.Show();
                 this.StartNormalGame();
             }
-
+            setArmyCheckBoxesFromGameState();
             this.pnlEdging.Visible = true;
         }
 
@@ -3786,6 +3786,38 @@ namespace SharpChess
             Game.PlayerBlack.Army = Armies.ArmyNames.Chancellor;
         }
 
+        private void setArmyCheckBoxesFromGameState()
+        {
+            clearWhiteArmyCheckBoxes();
+            clearBlackArmyCheckBoxes();
+
+            switch (Game.PlayerWhite.Army)
+            {
+                case Armies.ArmyNames.Chancellor:
+                    mnuArmyWhiteChancellor_Click(null, null);
+                    break;
+                case Armies.ArmyNames.Empowered:
+                    mnuArmyWhiteEmpowered_Click(null, null);
+                    break;
+                case Armies.ArmyNames.Classic:
+                default:
+                    mnuArmyWhiteClassic_Click(null, null);
+                    break;
+            }
+            switch (Game.PlayerBlack.Army)
+            {
+                case Armies.ArmyNames.Chancellor:
+                    mnuArmyBlackChancellor_Click(null, null);
+                    break;
+                case Armies.ArmyNames.Empowered:
+                    mnuArmyBlackEmpowered_Click(null, null);
+                    break;
+                case Armies.ArmyNames.Classic:
+                default:
+                    mnuArmyBlackClassic_Click(null, null);
+                    break;
+            }
+        }
 
         private void clearWhiteArmyCheckBoxes()
         {

@@ -120,5 +120,56 @@ namespace SharpChess.Model.Tests
 
 
         }
+
+        [TestMethod]
+        public void Armies_Values_Empowered()
+        {
+            string fen = "8/8/8/1k6/8/2BN4/8/K7 b - - 0 1";
+
+            // Bishop value should be +1000 b/c knight on board
+            Game_Accessor.PlayerWhite.Army = Armies.ArmyNames.Empowered;
+            Game_Accessor.NewInternal(fen);
+
+            // Bishop value should be +value b/c knight on board
+            Piece p = Board_Accessor.GetPiece(2, 2);
+            Assert.AreEqual(p.Role, Piece.PieceNames.EmpoweredBishop);
+            Assert.AreEqual(p.Value, 3900);
+
+            // Bishop value should be +value b/c knight on board
+            p = Board_Accessor.GetPiece(3, 2);
+            Assert.AreEqual(p.Role, Piece.PieceNames.EmpoweredKnight);
+            Assert.AreEqual(p.Value, 3900);
+
+            // now remove the knight, bishop should be regular value
+            fen = "8/8/8/1k6/8/2B5/8/K7 b - - 0 1";
+            Game_Accessor.NewInternal(fen); 
+            p = Board_Accessor.GetPiece(2, 2);
+            Assert.AreEqual(p.Role, Piece.PieceNames.EmpoweredBishop);
+            Assert.AreEqual(p.Value, 3250);
+
+            // now remove the bishop, knight should be regular value
+            fen = "8/8/8/1k6/8/3N4/8/K7 b - - 0 1";
+            Game_Accessor.NewInternal(fen);
+            p = Board_Accessor.GetPiece(3, 2);
+            Assert.AreEqual(p.Role, Piece.PieceNames.EmpoweredKnight);
+            Assert.AreEqual(p.Value, 3250);
+
+
+            // add rook, now bishop and knight should be almost a rook each
+            fen = "8/8/8/1k6/8/2BNR3/8/K7 b - - 0 1";
+            Game_Accessor.NewInternal(fen);
+            p = Board_Accessor.GetPiece(2, 2);
+            Assert.AreEqual(p.Role, Piece.PieceNames.EmpoweredBishop);
+            Assert.AreEqual(p.Value, 4700);
+
+            p = Board_Accessor.GetPiece(3, 2);
+            Assert.AreEqual(p.Role, Piece.PieceNames.EmpoweredKnight);
+            Assert.AreEqual(p.Value, 4700);
+
+            p = Board_Accessor.GetPiece(4, 2);
+            Assert.AreEqual(p.Role, Piece.PieceNames.EmpoweredRook);
+            Assert.AreEqual(p.Value, 6400);
+
+        }
     }
 }

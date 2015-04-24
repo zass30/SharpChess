@@ -190,7 +190,16 @@ namespace SharpChess.Model
         {
             get
             {
-                return 4250;
+                int value = 3250;
+                this.Base.Player.PieceTypes();
+                foreach (Piece.PieceNames role in this.Base.Player.PieceTypes())
+                {
+                    if (role == Piece.PieceNames.EmpoweredKnight)
+                        value += 650;
+                    if (role == Piece.PieceNames.EmpoweredRook)
+                        value += 800;
+                }
+                return value;
             }
         }
 

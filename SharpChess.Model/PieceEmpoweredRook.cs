@@ -238,9 +238,17 @@ namespace SharpChess.Model
         {
             get
             {
-                return 6000;
-                    
-                    // - ((m_Base.Player.PawnsInPlay-5) * 125);  // lower the rook's value by 1/8 for each pawn above five of the side being valued, with the opposite adjustment for each pawn short of five
+                int value = 5000;
+                this.Base.Player.PieceTypes();
+                foreach (Piece.PieceNames role in this.Base.Player.PieceTypes())
+                {
+                    if (role == Piece.PieceNames.EmpoweredBishop)
+                        value += 700;
+                    if (role == Piece.PieceNames.EmpoweredKnight)
+                        value += 700;
+
+                }
+                return value;
             }
         }
 
