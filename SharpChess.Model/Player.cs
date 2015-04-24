@@ -288,6 +288,17 @@ namespace SharpChess.Model
             }
         }
         
+        public bool SetArmy(string army)
+        {
+            // set army from string
+            foreach (Armies.ArmyNames a in System.Enum.GetValues(typeof(Armies.ArmyNames)))
+            {
+                if (a.ToString() == army)
+                    this.Army = a;
+            }
+
+            return false;
+        }
 
         /// <summary>
         ///   Gets or sets a value indicating whether the player has castled yet.

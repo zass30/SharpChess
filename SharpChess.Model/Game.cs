@@ -925,6 +925,17 @@ namespace SharpChess.Model
                 UseRandomOpeningMoves = xmlnodeGame.GetAttribute("UseRandomOpeningMoves") == "1";
             }
 
+            if (xmlnodeGame.GetAttribute("WhiteArmy") != string.Empty)
+            {
+                PlayerWhite.SetArmy(xmlnodeGame.GetAttribute("WhiteArmy"));
+            }
+
+            if (xmlnodeGame.GetAttribute("BlackArmy") != string.Empty)
+            {
+                PlayerBlack.SetArmy(xmlnodeGame.GetAttribute("BlackArmy"));
+            }
+
+
             XmlNodeList xmlnodelist = xmldoc.SelectNodes("/Game/Move");
 
             if (xmlnodelist != null)
@@ -1156,6 +1167,8 @@ namespace SharpChess.Model
             xmlnodeGame.SetAttribute("MaximumSearchDepth", MaximumSearchDepth.ToString(CultureInfo.InvariantCulture));
             xmlnodeGame.SetAttribute("Pondering", EnablePondering ? "1" : "0");
             xmlnodeGame.SetAttribute("UseRandomOpeningMoves", UseRandomOpeningMoves ? "1" : "0");
+            xmlnodeGame.SetAttribute("WhiteArmy", Game.PlayerWhite.Army.ToString());
+            xmlnodeGame.SetAttribute("BlackArmy", Game.PlayerBlack.Army.ToString());
 
             foreach (Move move in MoveHistory)
             {
