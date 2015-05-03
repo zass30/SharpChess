@@ -13,6 +13,7 @@ namespace SharpChess.Model
         {
             Classic,
             Chancellor,
+            Demon,
             Empowered
         }
         #endregion
@@ -55,6 +56,26 @@ namespace SharpChess.Model
                         return new PieceRook(basePiece);
                     case Piece.PieceNames.Queen:
                         return new PieceChancellor(basePiece);
+                    case Piece.PieceNames.King:
+                        return new PieceKingNoCastle(basePiece);
+                    default:
+                        throw new Exception("Unknown piece type: " + name + " " + army);
+                }
+            }
+            else if (army == ArmyNames.Demon)
+            {
+                switch (name)
+                {
+                    case Piece.PieceNames.Pawn:
+                        return new PiecePawn(basePiece);
+                    case Piece.PieceNames.Bishop:
+                        return new PieceBishop(basePiece);
+                    case Piece.PieceNames.Knight:
+                        return new PieceKnight(basePiece);
+                    case Piece.PieceNames.Rook:
+                        return new PieceRook(basePiece);
+                    case Piece.PieceNames.Queen:
+                        return new PieceDemon(basePiece);
                     case Piece.PieceNames.King:
                         return new PieceKingNoCastle(basePiece);
                     default:

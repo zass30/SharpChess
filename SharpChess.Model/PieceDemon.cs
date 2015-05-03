@@ -28,7 +28,7 @@ namespace SharpChess.Model
     /// <summary>
     /// The piece queen.
     /// </summary>
-    public class PieceChancellor : IPieceTop
+    public class PieceDemon : IPieceTop
     {
         #region Constants and Fields
 
@@ -37,7 +37,7 @@ namespace SharpChess.Model
         /// </summary>
 
         public static int[] moveVectors_slider = { 1, -1, 16, -16 };
-        public static int[] moveVectors_leaper = { 33, 18, -14, -31, -33, -18, 14, 31};
+        public static int[] moveVectors_leaper = { 33, 18, -14, -31, -33, -18, 14, 31, 17, -17, 15, -15 };
 
         #endregion
         
@@ -49,7 +49,7 @@ namespace SharpChess.Model
         /// <param name="pieceBase">
         /// The piece base.
         /// </param>
-        public PieceChancellor(Piece pieceBase)
+        public PieceDemon(Piece pieceBase)
         {
             this.Base = pieceBase;
         }
@@ -170,7 +170,6 @@ namespace SharpChess.Model
         {
             get
             {
-                return 9750;
             }
         }
 

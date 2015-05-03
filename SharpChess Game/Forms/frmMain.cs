@@ -648,6 +648,8 @@ namespace SharpChess
         private MenuItem menuItem13;
         private MenuItem mnuArmyWhiteChancellor;
         private MenuItem mnuArmyBlackChancellor;
+        private MenuItem mnuArmyWhiteDemon;
+        private MenuItem mnuArmyBlackDemon;
 
         /// <summary>
         /// The txt output.
@@ -1152,6 +1154,8 @@ namespace SharpChess
             this.imgTiles = new System.Windows.Forms.ImageList(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.mnuArmyWhiteDemon = new System.Windows.Forms.MenuItem();
+            this.mnuArmyBlackDemon = new System.Windows.Forms.MenuItem();
             this.pnlMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPerftDepth)).BeginInit();
             this.SuspendLayout();
@@ -1446,7 +1450,8 @@ namespace SharpChess
             this.mnuArmyWhiteClassic,
             this.mnuArmyWhiteEmpowered,
             this.mnuArmyWhiteAnimals,
-            this.mnuArmyWhiteChancellor});
+            this.mnuArmyWhiteChancellor,
+            this.mnuArmyWhiteDemon});
             this.menuItem6.Text = "White Army";
             // 
             // mnuArmyWhiteClassic
@@ -1480,7 +1485,8 @@ namespace SharpChess
             this.mnuArmyBlackClassic,
             this.mnuArmyBlackEmpowered,
             this.mnuArmyBlackAnimals,
-            this.mnuArmyBlackChancellor});
+            this.mnuArmyBlackChancellor,
+            this.mnuArmyBlackDemon});
             this.menuItem5.Text = "Black Army";
             // 
             // mnuArmyBlackClassic
@@ -2136,6 +2142,18 @@ namespace SharpChess
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // mnuArmyWhiteDemon
+            // 
+            this.mnuArmyWhiteDemon.Index = 4;
+            this.mnuArmyWhiteDemon.Text = "Demon";
+            this.mnuArmyWhiteDemon.Click += new System.EventHandler(this.mnuArmyWhiteDemon_Click);
+            // 
+            // mnuArmyBlackDemon
+            // 
+            this.mnuArmyBlackDemon.Index = 4;
+            this.mnuArmyBlackDemon.Text = "Demon";
+            this.mnuArmyBlackDemon.Click += new System.EventHandler(this.mnuArmyBlackDemon_Click);
             // 
             // frmMain
             // 
@@ -3756,6 +3774,12 @@ namespace SharpChess
             Game.PlayerWhite.Army = Armies.ArmyNames.Chancellor;
         }
 
+        private void mnuArmyWhiteDemon_Click(object sender, EventArgs e)
+        {
+            clearWhiteArmyCheckBoxes();
+            this.mnuArmyWhiteDemon.Checked = true;
+            Game.PlayerWhite.Army = Armies.ArmyNames.Demon;
+        }
 
 
         private void mnuArmyBlackClassic_Click(object sender, EventArgs e)
@@ -3786,6 +3810,14 @@ namespace SharpChess
             Game.PlayerBlack.Army = Armies.ArmyNames.Chancellor;
         }
 
+        private void mnuArmyBlackDemon_Click(object sender, EventArgs e)
+        {
+            clearBlackArmyCheckBoxes();
+            this.mnuArmyBlackDemon.Checked = true;
+            Game.PlayerBlack.Army = Armies.ArmyNames.Demon;
+        }
+
+
         private void setArmyCheckBoxesFromGameState()
         {
             clearWhiteArmyCheckBoxes();
@@ -3795,6 +3827,9 @@ namespace SharpChess
             {
                 case Armies.ArmyNames.Chancellor:
                     mnuArmyWhiteChancellor_Click(null, null);
+                    break;
+                case Armies.ArmyNames.Demon:
+                    mnuArmyWhiteDemon_Click(null, null);
                     break;
                 case Armies.ArmyNames.Empowered:
                     mnuArmyWhiteEmpowered_Click(null, null);
@@ -3808,6 +3843,9 @@ namespace SharpChess
             {
                 case Armies.ArmyNames.Chancellor:
                     mnuArmyBlackChancellor_Click(null, null);
+                    break;
+                case Armies.ArmyNames.Demon:
+                    mnuArmyBlackDemon_Click(null, null);
                     break;
                 case Armies.ArmyNames.Empowered:
                     mnuArmyBlackEmpowered_Click(null, null);
@@ -3825,6 +3863,7 @@ namespace SharpChess
             this.mnuArmyWhiteAnimals.Checked = false;
             this.mnuArmyWhiteEmpowered.Checked = false;
             this.mnuArmyWhiteChancellor.Checked = false;
+            this.mnuArmyWhiteDemon.Checked = false;
         }
 
 
@@ -3834,6 +3873,9 @@ namespace SharpChess
             this.mnuArmyBlackAnimals.Checked = false;
             this.mnuArmyBlackEmpowered.Checked = false;
             this.mnuArmyBlackChancellor.Checked = false;
+            this.mnuArmyBlackDemon.Checked = false;
         }
+
+
     }
 }

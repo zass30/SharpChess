@@ -104,7 +104,7 @@ namespace SharpChess.Model
                     if (player.Army == Armies.ArmyNames.Classic)
                         this.Top = new PieceQueen(this);
                     else if (player.Army == Armies.ArmyNames.Chancellor)
-                        this.Top = new PieceChancellor(this);
+                        this.Top = new PieceDemon(this);
                     else
                         throw new Exception("Unknown army: " + player.Army);
                     break;
@@ -594,7 +594,7 @@ namespace SharpChess.Model
 
                     //chancellor
                 case PieceNames.Chancellor:
-                    return PieceChancellor.DoesPieceAttackSquare(square, player);
+                    return PieceDemon.DoesPieceAttackSquare(square, player);
 
                 case PieceNames.EmpoweredKnight:
                 case PieceNames.EmpoweredBishop:
@@ -635,7 +635,7 @@ namespace SharpChess.Model
                     return PieceRook.DoesPieceAttackSquare(square, player, out attackingPiece);
 
                 case PieceNames.Chancellor:
-                    return PieceChancellor.DoesPieceAttackSquare(square, player, out attackingPiece);
+                    return PieceDemon.DoesPieceAttackSquare(square, player, out attackingPiece);
 
                 case PieceNames.EmpoweredKnight:
                 case PieceNames.EmpoweredBishop:
