@@ -72,10 +72,10 @@
     <Compile Include="Moves.cs" />
     <Compile Include="PGNtoXML.cs" />
     <Compile Include="Piece.cs" />
-    <Compile Include="PieceChancellor - Copy.cs" />
+    <Compile Include="PieceChancellor.cs" />
     <Compile Include="PieceEmpoweredBishop.cs" />
     <Compile Include="PieceBishop.cs" />
-    <Compile Include="PieceChancellor.cs" />
+    <Compile Include="PieceDemon.cs" />
     <Compile Include="PieceHashCodes.cs" />
     <Compile Include="PieceKingNoCastle.cs" />
     <Compile Include="PieceKing.cs" />
