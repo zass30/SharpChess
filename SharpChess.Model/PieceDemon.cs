@@ -81,7 +81,7 @@ namespace SharpChess.Model
         {
             get
             {
-                return 9;
+                return 10;
             }
         }
 
